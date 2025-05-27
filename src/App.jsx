@@ -1,22 +1,30 @@
-import React from 'react';
-import './index.css';
-import Header from './components/Header';
-import About from './components/About';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Contact from './components/Contact';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import Projects from './pages/Projects';
+import Skills from './pages/Skills';
+import Contact from './pages/Contact';
 
 function App() {
   return (
-    <div className="container">
-      <Header />
-      <About />
-      <Projects />
-      <Skills />
-      <Contact />
-    </div>
+    <Router>
+      <nav style={{ marginBottom: '2rem' }}>
+        <Link to="/" style={{ marginRight: '1rem' }}>Inicio</Link> |{" "}
+        <Link to="/about">Sobre mí</Link> |{" "}
+        <Link to="/projects">Proyectos</Link> |{" "}
+        <Link to="/skills">Habilidades</Link> |{" "}
+        <Link to="/contact">Contacto</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/skills" element={<Skills />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
-
