@@ -1,26 +1,174 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9f9;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
   color: #333;
+  scroll-behavior: smooth;
 }
 
-.container {
-  width: 90%;
+.navbar {
+  position: sticky;
+  top: 4px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  z-index: 9998;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.navbar button {
+  background-color: #4A90E2;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.navbar button:hover {
+  background-color: #357ABD;
+}
+
+.section {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  border-bottom: 1px solid #ddd;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section h2 {
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+.section ul {
+  padding-left: 1.2rem;
+}
+
+a {
+  color: #4A90E2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Fade-in animation when scrolled into view */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sección "Sobre mí" con fondo decorativo */
+#about {
+  position: relative;
+  background-color: #f0f4f8;
+  overflow: hidden;
+}
+
+/* Fondo desenfocado */
+.about-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/about/img1.jpg'), url('../assets/about/img2.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  filter: blur(12px);
+  z-index: 0;
+}
+
+/* Carrusel principal */
+.carousel-wrapper {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.carousel-track {
+  display: flex;
+  animation: scroll 30s linear infinite;
+}
+
+.carousel-img {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  margin-right: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.main-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.section {
+  padding: 5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.section p, .section ul {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem 0;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  text-align: center;
 }
 
-section {
-  margin-bottom: 4rem;
+.carousel-wrapper {
+  margin: 3rem auto;
+  max-width: 100%;
+  overflow: hidden;
 }
 
-h1, h2 {
-  color: #222;
-  margin-bottom: 0.5rem;
+.carousel-track {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  gap: 1rem;
+  justify-content: flex-start;
 }
 
-p {
-  line-height: 1.6;
+.carousel-img {
+  margin: 0 auto;
+  display: block;
 }
+
+.section img {
+  max-width: 100%;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 12px;
+}
+
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
