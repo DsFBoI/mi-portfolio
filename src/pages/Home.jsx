@@ -81,7 +81,6 @@ function Home() {
             </div>
           </div>
         </section>
-
         {/* Educación */}
         <section id="education" className="section reveal">
           <h2>Educación</h2>
