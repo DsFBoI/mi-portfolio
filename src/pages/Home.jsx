@@ -70,7 +70,7 @@ function Home() {
         <section id="about" className="section reveal about-section">
           <h2>About me</h2>
           <p>
-           I'm an young Spanish engineer with a Computer Science Bachelor Degree at Universidad Politécnica de Madrid. I’m passionate about programming specially in everything related to AI and Machine Learning. Some of my other passions are football and videogames
+           I'm an young Spanish engineer with a Computer Science Bachelor Degree at Universidad Politécnica de Madrid. I’m passionate about programming specially in everything related to AI and Machine Learning. Some of my other passions are travelling, football and music to name a few.
           </p>
 
           <div className="carousel-wrapper">
@@ -107,7 +107,7 @@ function Home() {
             <li><strong>Sokoban Game</strong> — Java</li>
             <li><strong>Vision AI tool</strong> — Python</li>
             <li><strong>JavaScript Compiler</strong> — Java</li>
-            <li><strong>Final Degree Project</strong> — Python</li>
+            <li><strong>Final Degree Project / Steganography algorithm</strong> — Python</li>
             <li><a href="https://github.com/DsFBoI/UPM-Work" target="_blank">GitHub</a></li>
           </ul>
         </section>
