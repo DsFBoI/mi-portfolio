@@ -66,9 +66,9 @@ function Home() {
 
         </section>
 
-        {/* Sobre mí */}
+        {/*About me*/}
         <section id="about" className="section reveal about-section">
-          <h2>Sobre mí</h2>
+          <h2>About me</h2>
           <p>
            I'm an young Spanish engineer with a Computer Science Bachelor Degree at Universidad Politécnica de Madrid. I’m passionate about programming specially in everything related to AI and Machine Learning. Some of my other passions are football and videogames
           </p>
@@ -81,60 +81,60 @@ function Home() {
             </div>
           </div>
         </section>
-        {/* Educación */}
+        {/* Education */}
         <section id="education" className="section reveal">
-          <h2>Educación</h2>
+          <h2>Education</h2>
           <ul>
-            <li><strong>Universidad Politécnica de Madrid</strong> — Degree inComputer Science (2020–2025)</li>
-            <li><strong>Politecnico di Milano</strong> — Erasmus+ (2023–2024), Total average: 21.3/30</li>
+            <li><strong> Politécnica de Madrid University</strong> — Degree in Computer Science (2020–2025)</li>
+            <li><strong>Politecnico di Milano University</strong> — Erasmus+ (2023–2024), Total average: 21.3/30</li>
             <li><strong>IES Ramiro de Maeztu</strong> — Tecnological Sciences modality</li>
           </ul>
         </section>
 
-        {/* Experiencia */}
+        {/* Working Experience */}
         <section id="experience" className="section reveal">
-          <h2>Experiencia</h2>
+          <h2>Working Experience</h2>
           <ul>
-            <li><strong>Accenture (Sept 2024 – May 2025)</strong> — Software Engineering Intern</li>
-            <li><strong>Zabbit</strong> — Prácticas en IA y cadena de suministro, modelo de control de calidad en Python</li>
+            <li><strong>Accenture (Sept 2024 – May 2025)</strong> — Supply Chain Analyst Intern</li>
           </ul>
         </section>
 
-        {/* Proyectos */}
+        {/* Projects */}
         <section id="projects" className="section reveal">
-          <h2>Proyectos</h2>
+          <h2>Projects</h2>
           <ul>
             <li><strong>Athens Interactive Metro Map</strong> — Python</li>
             <li><strong>Sokoban Game</strong> — Java</li>
-            <li><strong>Compilador JavaScript</strong> — Java</li>
-            <li><strong>Trabajo Fin de Grado</strong> — Python</li>
+            <li><strong>Vision AI tool</strong> — Python</li>
+            <li><strong>JavaScript Compiler</strong> — Java</li>
+            <li><strong>Final Degree Project</strong> — Python</li>
             <li><a href="https://github.com/DsFBoI/UPM-Work" target="_blank">GitHub</a></li>
           </ul>
         </section>
 
         {/* Habilidades */}
         <section id="skills" className="section reveal">
-          <h2>Habilidades Técnicas</h2>
+          <h2>Technical Skills</h2>
           <ul>
-            <li>Java, Python (Avanzado)</li>
-            <li>C++, C#, Ensamblador (Intermedio)</li>
+            <li>Java, Python (Advanced)</li>
+            <li>C++, C#, Assembly (Intermediate)</li>
             <li>SQL, Git, Office IT</li>
           </ul>
           <h3>Soft Skills</h3>
           <ul>
-            <li>Trabajo en equipo, liderazgo, iniciativa</li>
-            <li>Resolución de problemas, adaptabilidad, creatividad</li>
+            <li>Teamwork, Leadership, Initiative</li>
+            <li>Problem Solving, Adaptability, Creativity</li>
           </ul>
         </section>
 
-        {/* Contacto */}
+        {/* Contact */}
         <section id="contact" className="section reveal">
-          <h2>Contacto</h2>
+          <h2>Contact</h2>
           <p>
             📧 <a href="mailto:danelsf02@gmail.com">danelsf02@gmail.com</a><br />
             📞 +34 663 54 34 76<br />
             🌐 <a href="https://github.com/DsFBoI" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/danielsferrari" target="_blank">LinkedIn</a><br />
-            📍 Calle García de Paredes, 66, 4A
+            📍 Calle García de Paredes, Madrid, 28010
           </p>
         </section>
     </div>
