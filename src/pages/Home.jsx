@@ -117,19 +117,116 @@ function Home() {
           </ul>
         </section>
 
-        {/* Habilidades */}
+        {/* Skills */}
         <section id="skills" className="section reveal">
-          <h2>Technical Skills</h2>
-          <ul>
-            <li>Java, Python (Advanced)</li>
-            <li>C++, C#, Assembly (Intermediate)</li>
-            <li>SQL, Git, Office IT</li>
-          </ul>
-          <h3>Soft Skills</h3>
-          <ul>
-            <li>Teamwork, Leadership, Initiative</li>
-            <li>Problem Solving, Adaptability, Creativity</li>
-          </ul>
+          <h2>Skills</h2>
+          
+          <div className="skills-container">
+            <div className="skills-category">
+              <h3>Programming Languages</h3>
+              <div className="skills-grid">
+                <div className="skill-item">
+                  <span className="skill-name">Python</span>
+                  <div className="skill-bar">
+                    <div className="skill-progress" data-level="90"></div>
+                  </div>
+                  <span className="skill-level">Advanced</span>
+                </div>
+                <div className="skill-item">
+                  <span className="skill-name">Java</span>
+                  <div className="skill-bar">
+                    <div className="skill-progress" data-level="90"></div>
+                  </div>
+                  <span className="skill-level">Advanced</span>
+                </div>
+                <div className="skill-item">
+                  <span className="skill-name">C++</span>
+                  <div className="skill-bar">
+                    <div className="skill-progress" data-level="75"></div>
+                  </div>
+                  <span className="skill-level">Intermediate</span>
+                </div>
+                <div className="skill-item">
+                  <span className="skill-name">C#</span>
+                  <div className="skill-bar">
+                    <div className="skill-progress" data-level="70"></div>
+                  </div>
+                  <span className="skill-level">Intermediate</span>
+                </div>
+                <div className="skill-item">
+                  <span className="skill-name">Assembly</span>
+                  <div className="skill-bar">
+                    <div className="skill-progress" data-level="65"></div>
+                  </div>
+                  <span className="skill-level">Intermediate</span>
+                </div>
+                <div className="skill-item">
+                  <span className="skill-name">SQL</span>
+                  <div className="skill-bar">
+                    <div className="skill-progress" data-level="80"></div>
+                  </div>
+                  <span className="skill-level">Intermediate</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="skills-category">
+              <h3>Technologies & Tools</h3>
+              <div className="skills-grid">
+                <div className="skill-item">
+                  <span className="skill-name">Git</span>
+                  <div className="skill-bar">
+                    <div className="skill-progress" data-level="85"></div>
+                  </div>
+                  <span className="skill-level">Advanced</span>
+                </div>
+                <div className="skill-item">
+                  <span className="skill-name">AI/ML</span>
+                  <div className="skill-bar">
+                    <div className="skill-progress" data-level="80"></div>
+                  </div>
+                  <span className="skill-level">Advanced</span>
+                </div>
+                <div className="skill-item">
+                  <span className="skill-name">Office IT</span>
+                  <div className="skill-bar">
+                    <div className="skill-progress" data-level="85"></div>
+                  </div>
+                  <span className="skill-level">Advanced</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="skills-category">
+              <h3>Soft Skills</h3>
+              <div className="soft-skills-grid">
+                <div className="soft-skill-item">
+                  <div className="soft-skill-icon">🎯</div>
+                  <span>Problem Solving</span>
+                </div>
+                <div className="soft-skill-item">
+                  <div className="soft-skill-icon">👥</div>
+                  <span>Teamwork</span>
+                </div>
+                <div className="soft-skill-item">
+                  <div className="soft-skill-icon">🚀</div>
+                  <span>Leadership</span>
+                </div>
+                <div className="soft-skill-item">
+                  <div className="soft-skill-icon">💡</div>
+                  <span>Initiative</span>
+                </div>
+                <div className="soft-skill-item">
+                  <div className="soft-skill-icon">🔄</div>
+                  <span>Adaptability</span>
+                </div>
+                <div className="soft-skill-item">
+                  <div className="soft-skill-icon">🎨</div>
+                  <span>Creativity</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Contact */}
