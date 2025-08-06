@@ -48,6 +48,15 @@ body {
   color: #90cdf4;
 }
 
+/* Carousel fade effects for dark mode */
+.dark .carousel-wrapper::before {
+  background: linear-gradient(to right, #121212, transparent);
+}
+
+.dark .carousel-wrapper::after {
+  background: linear-gradient(to left, #121212, transparent);
+}
+
 
 
 
@@ -113,6 +122,28 @@ a:hover {
   margin: 2rem auto;
   max-width: 100%;
   padding: 1rem 0; /* Add vertical padding to accommodate scaling */
+  position: relative;
+}
+
+.carousel-wrapper::before,
+.carousel-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.carousel-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #f8f9fa, transparent);
+}
+
+.carousel-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #f8f9fa, transparent);
 }
 
 .carousel-track {
@@ -273,6 +304,11 @@ a:hover {
   .carousel-wrapper {
     margin: 1rem auto; /* Less margin on mobile */
     padding: 0.5rem 0; /* Smaller padding on mobile */
+  }
+
+  .carousel-wrapper::before,
+  .carousel-wrapper::after {
+    width: 40px; /* Smaller fade area on mobile */
   }
 
   .navbar {
