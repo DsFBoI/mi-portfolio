@@ -118,16 +118,9 @@ function Home() {
                   <span className="tech-tag">Image Processing</span>
                 </div>
               </div>
-              <p className="project-description">
-                Advanced steganography algorithm for hiding data within digital images using machine learning techniques. 
-                Implements state-of-the-art concealment methods with minimal visual distortion.
-              </p>
               <div className="project-links">
                 <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
                   <span>🔗</span> GitHub
-                </a>
-                <a href="#" className="project-link demo-link">
-                  <span>📄</span> Documentation
                 </a>
               </div>
             </div>
@@ -141,16 +134,9 @@ function Home() {
                   <span className="tech-tag">OpenCV</span>
                 </div>
               </div>
-              <p className="project-description">
-                Computer vision application for real-time object detection and analysis. 
-                Features custom neural network models and advanced image processing capabilities.
-              </p>
               <div className="project-links">
                 <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
                   <span>🔗</span> GitHub
-                </a>
-                <a href="#" className="project-link demo-link">
-                  <span>🎥</span> Demo
                 </a>
               </div>
             </div>
@@ -164,16 +150,9 @@ function Home() {
                   <span className="tech-tag">Parsing</span>
                 </div>
               </div>
-              <p className="project-description">
-                Full-featured JavaScript compiler built from scratch in Java. Includes lexical analysis, 
-                syntax parsing, semantic analysis, and code generation phases.
-              </p>
               <div className="project-links">
                 <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
                   <span>🔗</span> GitHub
-                </a>
-                <a href="#" className="project-link demo-link">
-                  <span>📚</span> Documentation
                 </a>
               </div>
             </div>
@@ -187,39 +166,9 @@ function Home() {
                   <span className="tech-tag">Algorithms</span>
                 </div>
               </div>
-              <p className="project-description">
-                Interactive metro map application with pathfinding algorithms and real-time route optimization. 
-                Features shortest path calculation and station information system.
-              </p>
               <div className="project-links">
                 <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
                   <span>🔗</span> GitHub
-                </a>
-                <a href="#" className="project-link demo-link">
-                  <span>🗺️</span> Live Demo
-                </a>
-              </div>
-            </div>
-
-            <div className="project-card">
-              <div className="project-header">
-                <h3>Sokoban Game</h3>
-                <div className="project-tech">
-                  <span className="tech-tag">Java</span>
-                  <span className="tech-tag">Game Development</span>
-                  <span className="tech-tag">GUI</span>
-                </div>
-              </div>
-              <p className="project-description">
-                Classic Sokoban puzzle game implementation with multiple levels, undo functionality, 
-                and modern GUI. Features level editor and save/load game state.
-              </p>
-              <div className="project-links">
-                <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
-                  <span>🔗</span> GitHub
-                </a>
-                <a href="#" className="project-link demo-link">
-                  <span>🎮</span> Play Game
                 </a>
               </div>
             </div>
@@ -351,7 +300,7 @@ function Home() {
             📧 <a href="mailto:danelsf02@gmail.com">danelsf02@gmail.com</a><br />
             📞 +34 663 54 34 76<br />
             🌐 <a href="https://github.com/DsFBoI" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/danielsferrari" target="_blank">LinkedIn</a><br />
-            📍 Calle García de Paredes, Madrid, 28010
+            📍 Madrid
           </p>
         </section>
     </div>
