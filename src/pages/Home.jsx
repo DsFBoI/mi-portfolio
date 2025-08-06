@@ -120,7 +120,7 @@ function Home() {
               </div>
               <div className="project-links">
                 <a href="https://github.com/DsFBoI/documents" target="_blank" className="project-link">
-                  <span>🔗</span> GitHub
+                  GitHub
                 </a>
               </div>
             </div>
@@ -131,12 +131,11 @@ function Home() {
                 <div className="project-tech">
                   <span className="tech-tag">Python</span>
                   <span className="tech-tag">Computer Vision</span>
-                  <span className="tech-tag">OpenCV</span>
                 </div>
               </div>
               <div className="project-links">
                 <a href="https://github.com/DsFBoI/VisionAI" target="_blank" className="project-link">
-                  <span>🔗</span> GitHub
+                  GitHub
                 </a>
               </div>
             </div>
@@ -152,7 +151,7 @@ function Home() {
               </div>
               <div className="project-links">
                 <a href="https://github.com/DsFBoI/UPM-Work/tree/main/PDL" target="_blank" className="project-link">
-                  <span>🔗</span> GitHub
+                  GitHub
                 </a>
               </div>
             </div>
@@ -162,20 +161,19 @@ function Home() {
                 <h3>Athens Interactive Metro Map</h3>
                 <div className="project-tech">
                   <span className="tech-tag">Python</span>
-                  <span className="tech-tag">Data Structures</span>
                   <span className="tech-tag">Algorithms</span>
                 </div>
               </div>
               <div className="project-links">
                 <a href="https://github.com/DsFBoI/UPM-Work/tree/main/IA/Practica_2k22" target="_blank" className="project-link">
-                  <span>🔗</span> GitHub
+                  GitHub
                 </a>
               </div>
             </div>
 
             <div className="projects-footer">
               <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="view-all-btn">
-                <span>👨‍💻</span> View All Projects on GitHub
+                View All Projects on GitHub
               </a>
             </div>
           </div>
