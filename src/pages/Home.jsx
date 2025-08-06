@@ -107,14 +107,129 @@ function Home() {
         {/* Projects */}
         <section id="projects" className="section reveal">
           <h2>Projects</h2>
-          <ul>
-            <li><strong>Athens Interactive Metro Map</strong> — Python</li>
-            <li><strong>Sokoban Game</strong> — Java</li>
-            <li><strong>Vision AI tool</strong> — Python</li>
-            <li><strong>JavaScript Compiler</strong> — Java</li>
-            <li><strong>Final Degree Project / Steganography algorithm</strong> — Python</li>
-            <li><a href="https://github.com/DsFBoI/UPM-Work" target="_blank">GitHub</a></li>
-          </ul>
+          
+          <div className="projects-container">
+            <div className="project-card">
+              <div className="project-header">
+                <h3>Final Degree Project: Steganography Algorithm</h3>
+                <div className="project-tech">
+                  <span className="tech-tag">Python</span>
+                  <span className="tech-tag">AI/ML</span>
+                  <span className="tech-tag">Image Processing</span>
+                </div>
+              </div>
+              <p className="project-description">
+                Advanced steganography algorithm for hiding data within digital images using machine learning techniques. 
+                Implements state-of-the-art concealment methods with minimal visual distortion.
+              </p>
+              <div className="project-links">
+                <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
+                  <span>🔗</span> GitHub
+                </a>
+                <a href="#" className="project-link demo-link">
+                  <span>📄</span> Documentation
+                </a>
+              </div>
+            </div>
+
+            <div className="project-card">
+              <div className="project-header">
+                <h3>Vision AI Tool</h3>
+                <div className="project-tech">
+                  <span className="tech-tag">Python</span>
+                  <span className="tech-tag">Computer Vision</span>
+                  <span className="tech-tag">OpenCV</span>
+                </div>
+              </div>
+              <p className="project-description">
+                Computer vision application for real-time object detection and analysis. 
+                Features custom neural network models and advanced image processing capabilities.
+              </p>
+              <div className="project-links">
+                <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
+                  <span>🔗</span> GitHub
+                </a>
+                <a href="#" className="project-link demo-link">
+                  <span>🎥</span> Demo
+                </a>
+              </div>
+            </div>
+
+            <div className="project-card">
+              <div className="project-header">
+                <h3>JavaScript Compiler</h3>
+                <div className="project-tech">
+                  <span className="tech-tag">Java</span>
+                  <span className="tech-tag">Compiler Design</span>
+                  <span className="tech-tag">Parsing</span>
+                </div>
+              </div>
+              <p className="project-description">
+                Full-featured JavaScript compiler built from scratch in Java. Includes lexical analysis, 
+                syntax parsing, semantic analysis, and code generation phases.
+              </p>
+              <div className="project-links">
+                <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
+                  <span>🔗</span> GitHub
+                </a>
+                <a href="#" className="project-link demo-link">
+                  <span>📚</span> Documentation
+                </a>
+              </div>
+            </div>
+
+            <div className="project-card">
+              <div className="project-header">
+                <h3>Athens Interactive Metro Map</h3>
+                <div className="project-tech">
+                  <span className="tech-tag">Python</span>
+                  <span className="tech-tag">Data Structures</span>
+                  <span className="tech-tag">Algorithms</span>
+                </div>
+              </div>
+              <p className="project-description">
+                Interactive metro map application with pathfinding algorithms and real-time route optimization. 
+                Features shortest path calculation and station information system.
+              </p>
+              <div className="project-links">
+                <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
+                  <span>🔗</span> GitHub
+                </a>
+                <a href="#" className="project-link demo-link">
+                  <span>🗺️</span> Live Demo
+                </a>
+              </div>
+            </div>
+
+            <div className="project-card">
+              <div className="project-header">
+                <h3>Sokoban Game</h3>
+                <div className="project-tech">
+                  <span className="tech-tag">Java</span>
+                  <span className="tech-tag">Game Development</span>
+                  <span className="tech-tag">GUI</span>
+                </div>
+              </div>
+              <p className="project-description">
+                Classic Sokoban puzzle game implementation with multiple levels, undo functionality, 
+                and modern GUI. Features level editor and save/load game state.
+              </p>
+              <div className="project-links">
+                <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
+                  <span>🔗</span> GitHub
+                </a>
+                <a href="#" className="project-link demo-link">
+                  <span>🎮</span> Play Game
+                </a>
+              </div>
+            </div>
+
+            <div className="projects-footer">
+              <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="view-all-btn">
+                <span>👨‍💻</span> View All Projects on GitHub
+              </a>
+            </div>
+          </div>
         </section>
 
         {/* Skills */}
