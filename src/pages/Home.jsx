@@ -114,8 +114,8 @@ function Home() {
                 <h3>Final Degree Project: Steganography Algorithm</h3>
                 <div className="project-tech">
                   <span className="tech-tag">Python</span>
-                  <span className="tech-tag">AI/ML</span>
-                  <span className="tech-tag">Image Processing</span>
+                  <span className="tech-tag">Cybersecurity</span>
+                  <span className="tech-tag">Image Manipulation</span>
                 </div>
               </div>
               <div className="project-links">
