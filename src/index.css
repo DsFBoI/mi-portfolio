@@ -112,6 +112,7 @@ a:hover {
   overflow: hidden;
   margin: 2rem auto;
   max-width: 100%;
+  padding: 1rem 0; /* Add vertical padding to accommodate scaling */
 }
 
 .carousel-track {
@@ -120,6 +121,7 @@ a:hover {
   gap: 2rem;
   width: calc(200% + 2rem); /* Account for duplicated images plus gap */
   will-change: transform; /* Optimize for animations */
+  padding: 0 1rem; /* Add horizontal padding to prevent edge cutting */
 }
 
 .carousel-track:hover {
@@ -265,10 +267,12 @@ a:hover {
     gap: 1rem; /* Smaller gap on mobile */
     animation: scroll 25s linear infinite; /* Slightly faster on mobile */
     width: calc(200% + 1rem); /* Adjust width for smaller gap */
+    padding: 0 0.5rem; /* Smaller horizontal padding on mobile */
   }
 
   .carousel-wrapper {
     margin: 1rem auto; /* Less margin on mobile */
+    padding: 0.5rem 0; /* Smaller padding on mobile */
   }
 
   .navbar {
