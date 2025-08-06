@@ -119,7 +119,7 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
+                <a href="https://github.com/DsFBoI/documents" target="_blank" className="project-link">
                   <span>🔗</span> GitHub
                 </a>
               </div>
@@ -135,7 +135,7 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
+                <a href="https://github.com/DsFBoI/VisionAI" target="_blank" className="project-link">
                   <span>🔗</span> GitHub
                 </a>
               </div>
@@ -151,7 +151,7 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
+                <a href="https://github.com/DsFBoI/UPM-Work/tree/main/PDL" target="_blank" className="project-link">
                   <span>🔗</span> GitHub
                 </a>
               </div>
@@ -167,7 +167,7 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="project-link">
+                <a href="https://github.com/DsFBoI/UPM-Work/tree/main/IA/Practica_2k22" target="_blank" className="project-link">
                   <span>🔗</span> GitHub
                 </a>
               </div>
