@@ -116,8 +116,14 @@ a:hover {
 
 .carousel-track {
   display: flex;
-  animation: scroll 25s linear infinite;
+  animation: scroll 30s linear infinite;
   gap: 2rem;
+  width: calc(200% + 2rem); /* Account for duplicated images plus gap */
+  will-change: transform; /* Optimize for animations */
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
 }
 
 .carousel-img {
@@ -127,6 +133,8 @@ a:hover {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.4s ease;
+  flex-shrink: 0; /* Prevent images from shrinking */
+  backface-visibility: hidden; /* Improve animation performance */
 }
 
 .carousel-img:hover {
@@ -251,6 +259,16 @@ a:hover {
   .carousel-img {
     width: 150px;
     height: 100px;
+  }
+
+  .carousel-track {
+    gap: 1rem; /* Smaller gap on mobile */
+    animation: scroll 25s linear infinite; /* Slightly faster on mobile */
+    width: calc(200% + 1rem); /* Adjust width for smaller gap */
+  }
+
+  .carousel-wrapper {
+    margin: 1rem auto; /* Less margin on mobile */
   }
 
   .navbar {
