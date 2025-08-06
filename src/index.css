@@ -252,4 +252,27 @@ a:hover {
   .navbar {
     flex-wrap: wrap;
   }
+
+  .typewriter {
+    font-size: 0.9rem;
+    max-width: 95%;
+    white-space: nowrap;
+    border-right: 2px solid #000000;
+    animation: typing 5s steps(50, end), blink 0.75s step-end infinite;
+    text-align: center;
+    overflow: hidden;
+    margin: 1rem auto 0;
+  }
+
+  .section h2 {
+    font-size: 2rem;
+  }
+
+  .main-container {
+    padding: 1rem;
+  }
+
+  .section {
+    padding: 4rem 1rem;
+  }
 }

@@ -62,7 +62,7 @@ function Home() {
         {/* Presentación */}
         <section id="intro" className="section reveal">
           <h2>Daniel Sánchez Ferrari</h2>
-          <p className="typewriter"> Computer Science Engineeer| AI Creative Developer  </p>
+          <p className="typewriter">Computer Science Engineer | AI Creative Developer</p>
 
         </section>
 
