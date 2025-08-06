@@ -60,7 +60,7 @@ body {
 /* Dark mode for skills */
 .dark .skills-category h3 {
   color: #f1f1f1;
-  border-bottom-color: #90cdf4;
+  border-bottom-color: #f1f1f1;
 }
 
 .dark .skill-item,
@@ -384,7 +384,7 @@ a:hover {
   margin-bottom: 1.5rem;
   color: #333;
   text-align: center;
-  border-bottom: 2px solid #4A90E2;
+  border-bottom: 2px solid #000000;
   padding-bottom: 0.5rem;
 }
 
