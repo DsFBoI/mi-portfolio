@@ -377,6 +377,7 @@ a:hover {
   background-color: #000000;
   z-index: 1;
   transition: height 0.2s ease;
+  border-radius: 1px;
 }
 
 /* Puntos e etiquetas */

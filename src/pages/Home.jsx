@@ -27,16 +27,23 @@ function Home() {
     const progress = (scrollTop / docHeight) * 100;
     setScrollProgress(progress);
 
-    sectionIds.forEach((id) => {
+    // Detect active section based on middle of viewport
+    const viewportMiddle = window.innerHeight / 2;
+    
+    let currentSection = 'intro';
+    
+    sectionIds.forEach(id => {
     const el = document.getElementById(id);
         if (el) {
         const rect = el.getBoundingClientRect();
-        if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveSection(id); // 🔁 aquí se actualiza
+        // Check if section center is crossing viewport center
+        if (rect.top <= viewportMiddle && rect.bottom >= viewportMiddle) {
+            currentSection = id;
     }
         }
     });
     
+    setActiveSection(currentSection);
 
     // Animación fade-in
     const reveals = document.querySelectorAll('.reveal');
@@ -50,6 +57,7 @@ function Home() {
   };
 
   window.addEventListener('scroll', onScroll);
+  onScroll(); // Call once to set initial state
   return () => window.removeEventListener('scroll', onScroll);
 }, []);
 
