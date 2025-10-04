@@ -15,51 +15,60 @@ import img9 from '../assets/about/img9.jpg';
 
 
 function Home() {
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('intro');
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-  const sectionIds = ['intro', 'about', 'education', 'experience', 'projects', 'skills', 'contact'];
-
-  const onScroll = () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.body.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / docHeight) * 100;
-    setScrollProgress(progress);
-
-    // Detect active section based on middle of viewport
-    const viewportMiddle = window.innerHeight / 2;
-    
-    let currentSection = 'intro';
-    
-    sectionIds.forEach(id => {
-    const el = document.getElementById(id);
-        if (el) {
-        const rect = el.getBoundingClientRect();
-        // Check if section center is crossing viewport center
-        if (rect.top <= viewportMiddle && rect.bottom >= viewportMiddle) {
-            currentSection = id;
-    }
+    const onScroll = () => {
+      // Detect active section based on middle of viewport
+      const sections = ['intro', 'about', 'education', 'experience', 'projects', 'skills', 'contact'];
+      const viewportMiddle = window.innerHeight / 2;
+      
+      let currentSection = 'intro';
+      let currentSectionIndex = 0;
+      
+      sections.forEach((sectionId, index) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Check if section is in the middle of viewport
+          if (rect.top <= viewportMiddle && rect.bottom >= viewportMiddle) {
+            currentSection = sectionId;
+            currentSectionIndex = index;
+          }
         }
-    });
-    
-    setActiveSection(currentSection);
+      });
+      
+      setActiveSection(currentSection);
 
-    // Animación fade-in
-    const reveals = document.querySelectorAll('.reveal');
-    for (let el of reveals) {
-      const top = el.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      if (top < windowHeight - 100) {
-        el.classList.add('active');
+      // Calculate progress based on current section position
+      const totalSections = sections.length;
+      const progressPerSection = 100 / totalSections;
+      
+      // Find more precise progress within current section
+      const currentElement = document.getElementById(currentSection);
+      if (currentElement) {
+        const rect = currentElement.getBoundingClientRect();
+        const sectionProgress = Math.max(0, Math.min(1, (viewportMiddle - rect.top) / rect.height));
+        const progress = (currentSectionIndex * progressPerSection) + (sectionProgress * progressPerSection);
+        setScrollProgress(Math.min(100, progress));
       }
-    }
-  };
 
-  window.addEventListener('scroll', onScroll);
-  onScroll(); // Call once to set initial state
-  return () => window.removeEventListener('scroll', onScroll);
-}, []);
+      // Animación fade-in
+      const reveals = document.querySelectorAll('.reveal');
+      for (let el of reveals) {
+        const top = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (top < windowHeight - 100) {
+          el.classList.add('active');
+        }
+      }
+    };
+
+    window.addEventListener('scroll', onScroll);
+    onScroll(); // Call once to set initial state
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
 
   return (
