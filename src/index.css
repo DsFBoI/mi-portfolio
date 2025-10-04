@@ -730,4 +730,9 @@ a:hover {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
   }
+
+  .section#intro {
+    padding-top: 15vh;
+    padding-bottom: 2rem;
+  }
 }
