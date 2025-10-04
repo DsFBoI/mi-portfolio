@@ -163,9 +163,9 @@ body {
 
 /* Special styling for intro section to show immediately */
 .section#intro {
-  justify-content: flex-start;
-  padding-top: 10vh;
-  padding-bottom: 4rem;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 /* Make intro section visible immediately, bypass fade animation */
@@ -739,7 +739,7 @@ a:hover {
   }
 
   .section#intro {
-    padding-top: 8vh;
+    padding-top: 2rem;
     padding-bottom: 2rem;
   }
 }
