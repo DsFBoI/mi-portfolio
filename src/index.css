@@ -161,6 +161,13 @@ body {
   justify-content: center; /* centra verticalmente el contenido */
 }
 
+/* Special styling for intro section to show immediately */
+.section#intro {
+  justify-content: flex-start;
+  padding-top: 20vh;
+  padding-bottom: 4rem;
+}
+
 
 .section h2 {
   font-size: 2.5rem;
