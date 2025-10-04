@@ -78,7 +78,7 @@ function Home() {
       <div className="main-container">
         {/* Presentación */}
         <section id="intro" className="section reveal">
-          <h2>Daniel Sánchez Ferrari</h2>
+          <h2 className="reveal">Daniel Sánchez Ferrari</h2>
           <p className="typewriter">Computer Science Engineer | AI Creative Developer</p>
           <p className="typewriter-mobile typewriter-line1">Computer Science Engineer</p>
           <p className="typewriter-mobile typewriter-line2">AI Creative Developer</p>
