@@ -111,7 +111,7 @@ function Home() {
           <ul className="education-list">
             <li className="education-item">
               <div className="edu-row">
-                <img src={upm} alt="UPM Logo" style={{ width: '60px', height: 'auto' }} />
+                <img src={upm} alt="UPM Logo" style={{ width: '100px', height: 'auto' }} />
                 <span>
                   <strong>Politécnica de Madrid University</strong> — Degree in Computer Science (2020–2025)
                 </span>
