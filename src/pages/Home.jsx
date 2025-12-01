@@ -118,6 +118,7 @@ function Home() {
           <h2>Working Experience</h2>
           <ul>
             <li><strong>Accenture (Sept 2024 – May 2025)</strong> — Supply Chain Analyst Intern</li>
+            <li><strong>Accenture (OCt 2025 – Currently)</strong> — Ind & Func AI Decision Science Analyst </li>
           </ul>
         </section>
 
