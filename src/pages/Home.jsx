@@ -110,16 +110,16 @@ function Home() {
           <h2>Education</h2>
           <ul className="education-list">
             <li className="education-item">
-              <img src={upm} alt="UPM Logo" className="education-logo" />
+              
               <div>
-                <strong>Politécnica de Madrid University</strong> — Degree in Computer Science (2020–2025)
+                <strong>Politécnica de Madrid University</strong> — Degree in Computer Science (2020–2025) <img src={upm} alt="UPM Logo" style={{ width: '35px', height: 'auto' }} />
               </div>
             </li>
 
             <li className="education-item">
               
               <div>
-                <strong>Politecnico di Milano University</strong> — Erasmus+ (2023–2024), Total average: 21.3/30 <img src={polimi} alt="Polimi Logo" className="education-logo" /> 
+                <strong>Politecnico di Milano University</strong> — Erasmus+ (2023–2024), Total average: 21.3/30 <img src={polimi} alt="Polimi Logo" style={{ width: '35px', height: 'auto' }} /> 
               </div>
             </li>
           </ul>
