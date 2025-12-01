@@ -11,6 +11,8 @@ import img6 from '../assets/about/img6.jpg';
 import img7 from '../assets/about/img7.jpg';
 import img8 from '../assets/about/img8.jpg';
 import img9 from '../assets/about/img9.jpg';
+import upm from '../assets/about/upm.png';
+import polimi from '../assets/about/polimi.png';
     
 
 
@@ -106,12 +108,23 @@ function Home() {
         {/* Education */}
         <section id="education" className="section reveal">
           <h2>Education</h2>
-          <ul>
-            <li><strong> Politécnica de Madrid University</strong> — Degree in Computer Science (2020–2025)</li>
-            <li><strong>Politecnico di Milano University</strong> — Erasmus+ (2023–2024), Total average: 21.3/30</li>
-            <li><strong>IES Ramiro de Maeztu</strong> — Tecnological Sciences modality</li>
+          <ul className="education-list">
+            <li className="education-item">
+              <img src={upm} alt="UPM Logo" className="education-logo" />
+              <div>
+                <strong>Politécnica de Madrid University</strong> — Degree in Computer Science (2020–2025)
+              </div>
+            </li>
+
+            <li className="education-item">
+              <img src={polimi} alt="Polimi Logo" className="education-logo" />
+              <div>
+                <strong>Politecnico di Milano University</strong> — Erasmus+ (2023–2024), Total average: 21.3/30
+              </div>
+            </li>
           </ul>
         </section>
+
 
         {/* Working Experience */}
         <section id="experience" className="section reveal">
