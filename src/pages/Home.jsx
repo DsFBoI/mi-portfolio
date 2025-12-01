@@ -110,22 +110,49 @@ function Home() {
           <h2>Education</h2>
           <ul className="education-list">
             <li className="education-item">
-              <div className="edu-row">
-                <img src={upm} alt="UPM Logo" style={{ width: '50px', height: 'auto' }} />
+              <div 
+                className="edu-column"
+                style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center', 
+                  textAlign: 'center',
+                  gap: '8px'
+                }}
+              >
+                <img 
+                  src={upm} 
+                  alt="UPM Logo" 
+                  style={{ width: '70px', height: 'auto' }} 
+                />
                 <span>
                   <strong>Politécnica de Madrid University</strong> — Degree in Computer Science (2020–2025)
                 </span>
               </div>
             </li>
-                        
+              
             <li className="education-item">
-              <div className="edu-row">
-                <img src={polimi} alt="Polimi Logo" style={{ width: '50px', height: 'auto' }} />
+              <div 
+                className="edu-column"
+                style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center', 
+                  textAlign: 'center',
+                  gap: '8px'
+                }}
+              >
+                <img 
+                  src={polimi} 
+                  alt="Polimi Logo" 
+                  style={{ width: '70px', height: 'auto' }} 
+                />
                 <span>
                   <strong>Politecnico di Milano University</strong> — Erasmus+ (2023–2024), Total average: 21.3/30
                 </span>
               </div>
             </li>
+              
                         
           </ul>
         </section>
