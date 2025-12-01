@@ -117,9 +117,9 @@ function Home() {
             </li>
 
             <li className="education-item">
-              <img src={polimi} alt="Polimi Logo" className="education-logo" />
+              
               <div>
-                <strong>Politecnico di Milano University</strong> — Erasmus+ (2023–2024), Total average: 21.3/30
+                <strong>Politecnico di Milano University</strong> — Erasmus+ (2023–2024), Total average: 21.3/30 <img src={polimi} alt="Polimi Logo" className="education-logo" /> 
               </div>
             </li>
           </ul>
