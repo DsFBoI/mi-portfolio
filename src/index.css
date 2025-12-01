@@ -832,5 +832,10 @@ a:hover {
   margin: 0;
 }
 
+.edu-row {
+  display: flex;
+  align-items: center;    /* centers text vertically */
+  gap: 12px;              /* space between image and text */
+}
 
 }
