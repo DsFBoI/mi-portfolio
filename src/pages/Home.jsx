@@ -110,20 +110,11 @@ function Home() {
           <h2>Education</h2>
           <ul className="education-list">
             <li className="education-item">
-              <div 
-                className="edu-column"
-                style={{ 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  alignItems: 'center', 
-                  textAlign: 'center',
-                  gap: '8px'
-                }}
-              >
+              <div className="edu-column">
                 <img 
                   src={upm} 
-                  alt="UPM Logo" 
-                  style={{ width: '70px', height: 'auto' }} 
+                  alt="UPM Logo"
+                  className="edu-logo"
                 />
                 <span>
                   <strong>Politécnica de Madrid University</strong> — Degree in Computer Science (2020–2025)
@@ -132,20 +123,11 @@ function Home() {
             </li>
               
             <li className="education-item">
-              <div 
-                className="edu-column"
-                style={{ 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  alignItems: 'center', 
-                  textAlign: 'center',
-                  gap: '8px'
-                }}
-              >
+              <div className="edu-column">
                 <img 
                   src={polimi} 
-                  alt="Polimi Logo" 
-                  style={{ width: '70px', height: 'auto' }} 
+                  alt="Polimi Logo"
+                  className="edu-logo"
                 />
                 <span>
                   <strong>Politecnico di Milano University</strong> — Erasmus+ (2023–2024), Total average: 21.3/30
@@ -163,7 +145,7 @@ function Home() {
           <h2>Working Experience</h2>
           <ul>
             <li><strong>Accenture (Sept 2024 – May 2025)</strong> — Supply Chain Analyst Intern</li>
-            <li><strong>Accenture (OCt 2025 – Currently)</strong> — Ind & Func AI Decision Science Analyst </li>
+            <li><strong>Accenture (Oct 2025 – Currently)</strong> — Ind & Func AI Decision Science Analyst </li>
           </ul>
         </section>
 
@@ -182,7 +164,7 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/documents" target="_blank" className="project-link">
+                <a href="https://github.com/DsFBoI/documents" target="_blank" rel="noopener noreferrer" className="project-link">
                   GitHub
                 </a>
               </div>
@@ -197,7 +179,7 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/VisionAI" target="_blank" className="project-link">
+                <a href="https://github.com/DsFBoI/VisionAI" target="_blank" rel="noopener noreferrer" className="project-link">
                   GitHub
                 </a>
               </div>
@@ -213,7 +195,7 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/UPM-Work/tree/main/PDL" target="_blank" className="project-link">
+                <a href="https://github.com/DsFBoI/UPM-Work/tree/main/PDL" target="_blank" rel="noopener noreferrer" className="project-link">
                   GitHub
                 </a>
               </div>
@@ -228,14 +210,14 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/UPM-Work/tree/main/IA/Practica_2k22" target="_blank" className="project-link">
+                <a href="https://github.com/DsFBoI/UPM-Work/tree/main/IA/Practica_2k22" target="_blank" rel="noopener noreferrer" className="project-link">
                   GitHub
                 </a>
               </div>
             </div>
 
             <div className="projects-footer">
-              <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" className="view-all-btn">
+              <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" rel="noopener noreferrer" className="view-all-btn">
                 View All Projects on GitHub
               </a>
             </div>

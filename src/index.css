@@ -472,6 +472,29 @@ a:hover {
   gap: 1.5rem;
 }
 
+.education-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.education-item {
+  margin-bottom: 1.25rem;
+}
+
+.edu-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.edu-logo {
+  width: 70px;
+  height: auto;
+}
+
 .skill-item {
   display: flex;
   flex-direction: column;
@@ -825,17 +848,5 @@ a:hover {
   .section#skills {
     padding: 3.5rem 1rem;
   }
-
-  .education-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.edu-row {
-  display: flex;
-  align-items: center;    /* centers text vertically */
-  gap: 12px;              /* space between image and text */
-}
 
 }
