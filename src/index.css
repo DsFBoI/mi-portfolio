@@ -219,6 +219,69 @@ body {
   transform: translateY(0);
 }
 
+/* Interactive marks in intro section */
+.intro-mark {
+  pointer-events: none;
+  animation: markAppear 0.5s ease-out;
+  z-index: 10;
+}
+
+@keyframes markAppear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.5);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) scale(1);
+  }
+}
+
+.intro-mark svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.intro-mark:hover svg {
+  transform: scale(1.1);
+}
+
+.mark-style-0 {
+  color: #4A90E2;
+}
+
+.mark-style-1 {
+  color: #000000;
+}
+
+.mark-style-2 {
+  color: #333333;
+}
+
+.intro-hint {
+  transition: opacity 0.3s ease;
+}
+
+.intro-clickable:hover .intro-hint {
+  opacity: 0.8 !important;
+}
+
+/* Dark mode for marks */
+.dark .mark-style-0 {
+  color: #90cdf4;
+}
+
+.dark .mark-style-1 {
+  color: #f1f1f1;
+}
+
+.dark .mark-style-2 {
+  color: #cccccc;
+}
+
 
 .section h2 {
   font-size: 2.5rem;
@@ -958,6 +1021,16 @@ a:hover {
   .section#projects,
   .section#skills {
     padding: 3.5rem 1rem;
+  }
+
+  .intro-mark svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .intro-hint {
+    font-size: 0.75rem;
+    margin-top: 1.5rem !important;
   }
 
   .modal-close-btn {

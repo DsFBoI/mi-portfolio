@@ -21,6 +21,8 @@ function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
   const scrollPositionRef = useRef(0);
+  const [marks, setMarks] = useState([]);
+  const introSectionRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -117,6 +119,31 @@ function Home() {
 
   const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
 
+  // Handle clicking on intro section to place a mark
+  const handleIntroClick = (e) => {
+    if (e.target.closest('.intro-mark') || e.target.closest('.intro-clickable')) {
+      return; // Don't create mark if clicking on existing mark or clickable area
+    }
+    
+    const introSection = introSectionRef.current;
+    if (!introSection) return;
+    
+    const rect = introSection.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Create a new mark with random rotation and style
+    const newMark = {
+      id: Date.now(),
+      x: x,
+      y: y,
+      rotation: (Math.random() - 0.5) * 30, // Random rotation between -15 and 15 degrees
+      style: Math.floor(Math.random() * 3), // Random style (0, 1, or 2)
+    };
+    
+    setMarks(prev => [...prev, newMark]);
+  };
+
 
   return (
     <div>
@@ -124,12 +151,47 @@ function Home() {
 
       <div className="main-container">
         {/* Presentación */}
-        <section id="intro" className="section reveal">
+        <section 
+          id="intro" 
+          className="section reveal intro-clickable"
+          ref={introSectionRef}
+          onClick={handleIntroClick}
+          style={{ position: 'relative', cursor: 'crosshair' }}
+        >
           <h2 className="reveal">Daniel Sánchez Ferrari</h2>
           <p className="typewriter">Computer Science Engineer | AI Creative Developer</p>
           <p className="typewriter-mobile typewriter-line1">Computer Science Engineer</p>
           <p className="typewriter-mobile typewriter-line2">AI Creative Developer</p>
-
+          
+          {/* Render marks */}
+          {marks.map((mark) => (
+            <div
+              key={mark.id}
+              className={`intro-mark mark-style-${mark.style}`}
+              style={{
+                position: 'absolute',
+                left: `${mark.x}px`,
+                top: `${mark.y}px`,
+                transform: `translate(-50%, -50%) rotate(${mark.rotation}deg)`,
+              }}
+            >
+              <svg width="60" height="60" viewBox="0 0 60 60">
+                {mark.style === 0 && (
+                  <circle cx="30" cy="30" r="25" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.7"/>
+                )}
+                {mark.style === 1 && (
+                  <path d="M30 5 L35 20 L50 20 L38 30 L43 45 L30 35 L17 45 L22 30 L10 20 L25 20 Z" fill="currentColor" opacity="0.6"/>
+                )}
+                {mark.style === 2 && (
+                  <rect x="10" y="10" width="40" height="40" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.7" rx="5"/>
+                )}
+              </svg>
+            </div>
+          ))}
+          
+          <p className="intro-hint" style={{ marginTop: '2rem', fontSize: '0.85rem', opacity: 0.6, fontStyle: 'italic' }}>
+            Click anywhere to leave your mark
+          </p>
         </section>
 
         {/*About me*/}
