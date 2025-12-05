@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import '../index.css';
 
 
@@ -20,6 +20,7 @@ function Home() {
   const [activeSection, setActiveSection] = useState('intro');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
+  const scrollPositionRef = useRef(0);
 
   useEffect(() => {
     const onScroll = () => {
@@ -83,13 +84,21 @@ function Home() {
     
     // Prevent body scroll when modal is open (important for mobile)
     if (selectedImage) {
+      // Save current scroll position
+      scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
+      // Apply fixed position and offset to maintain visual position
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPositionRef.current}px`;
       document.body.style.width = '100%';
     } else {
+      // Restore scroll position
       document.body.style.overflow = '';
       document.body.style.position = '';
+      document.body.style.top = '';
       document.body.style.width = '';
+      // Restore the scroll position
+      window.scrollTo(0, scrollPositionRef.current);
     }
     
     window.addEventListener('keydown', handleEscape);
@@ -98,7 +107,11 @@ function Home() {
       // Cleanup: restore body scroll when component unmounts
       document.body.style.overflow = '';
       document.body.style.position = '';
+      document.body.style.top = '';
       document.body.style.width = '';
+      if (scrollPositionRef.current) {
+        window.scrollTo(0, scrollPositionRef.current);
+      }
     };
   }, [selectedImage]);
 
