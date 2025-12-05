@@ -310,11 +310,17 @@ a:hover {
   transition: transform 0.4s ease;
   flex-shrink: 0; /* Prevent images from shrinking */
   backface-visibility: hidden; /* Improve animation performance */
+  cursor: pointer;
+  touch-action: manipulation; /* Better touch handling on mobile */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
 .carousel-img:hover {
   transform: scale(1.1);
-  cursor: pointer;
+}
+
+.carousel-img:active {
+  transform: scale(1.05); /* Visual feedback on mobile tap */
 }
 
 /* IMAGE MODAL */
@@ -331,6 +337,9 @@ a:hover {
   z-index: 10000;
   cursor: pointer;
   animation: fadeIn 0.3s ease;
+  overflow: hidden;
+  touch-action: manipulation; /* Better touch handling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 @keyframes fadeIn {
@@ -382,6 +391,10 @@ a:hover {
   z-index: 10001;
   line-height: 1;
   padding: 0;
+  touch-action: manipulation; /* Better touch handling on mobile */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
+  min-width: 44px; /* Minimum touch target size for accessibility */
+  min-height: 44px;
 }
 
 .modal-close-btn:hover {
@@ -811,6 +824,13 @@ a:hover {
   .carousel-img {
     width: 150px;
     height: 100px;
+    /* Ensure images are easily tappable */
+    min-width: 150px;
+    min-height: 100px;
+  }
+
+  .carousel-img:active {
+    transform: scale(1.05);
   }
 
   .carousel-track {
@@ -945,14 +965,25 @@ a:hover {
   .modal-close-btn {
     top: 10px;
     right: 15px;
-    width: 40px;
-    height: 40px;
+    width: 44px; /* Maintain minimum touch target */
+    height: 44px;
     font-size: 2rem;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .modal-image {
     max-width: 95%;
     max-height: 85%;
+    /* Ensure image doesn't overflow on small screens */
+    width: auto;
+    height: auto;
+  }
+
+  .image-modal {
+    /* Prevent body scroll on mobile when modal is open */
+    position: fixed;
+    overflow: hidden;
   }
 
 }

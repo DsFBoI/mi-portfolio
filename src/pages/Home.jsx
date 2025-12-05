@@ -73,15 +73,33 @@ function Home() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Handle ESC key to close modal
+  // Handle ESC key to close modal and prevent body scroll when modal is open
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape' && selectedImage) {
         setSelectedImage(null);
       }
     };
+    
+    // Prevent body scroll when modal is open (important for mobile)
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+    
     window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+      // Cleanup: restore body scroll when component unmounts
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
   }, [selectedImage]);
 
   const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
