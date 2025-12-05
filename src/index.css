@@ -292,7 +292,6 @@ a:hover {
   display: flex;
   animation: scroll 30s linear infinite;
   gap: 2rem;
-  width: calc(200% + 2rem); /* Account for duplicated images plus gap */
   will-change: transform; /* Optimize for animations */
   padding: 0 1rem; /* Add horizontal padding to prevent edge cutting */
 }
@@ -455,7 +454,7 @@ a:hover {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* Translate exactly half (one complete set) */
   }
 }
 
@@ -836,7 +835,6 @@ a:hover {
   .carousel-track {
     gap: 1rem; /* Smaller gap on mobile */
     animation: scroll 25s linear infinite; /* Slightly faster on mobile */
-    width: calc(200% + 1rem); /* Adjust width for smaller gap */
     padding: 0 0.5rem; /* Smaller horizontal padding on mobile */
   }
 
