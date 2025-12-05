@@ -22,7 +22,11 @@ function Home() {
   const [selectedImage, setSelectedImage] = useState(null);
   const scrollPositionRef = useRef(0);
   const [marks, setMarks] = useState([]);
+  const [inputText, setInputText] = useState('');
+  const [showInput, setShowInput] = useState(false);
+  const [clickPosition, setClickPosition] = useState(null);
   const introSectionRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -121,8 +125,9 @@ function Home() {
 
   // Handle clicking on intro section to place a mark
   const handleIntroClick = (e) => {
-    // Don't create mark if clicking directly on an existing mark
-    if (e.target.closest('.intro-mark')) {
+    // Don't create mark if clicking directly on an existing mark or input box
+    if (e.target.closest('.intro-mark') || 
+        e.target.closest('.text-input-container')) {
       return;
     }
     
@@ -133,16 +138,37 @@ function Home() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
-    // Create a new mark with random rotation and style
+    // Store click position and show input
+    setClickPosition({ x, y });
+    setShowInput(true);
+    setTimeout(() => inputRef.current?.focus(), 0);
+  };
+
+  // Handle text input submission - creates a mark with the text
+  const handleTextSubmit = (e) => {
+    e.preventDefault();
+    if (!inputText.trim() || !clickPosition) return;
+
+    // Create a new mark with the user's text
     const newMark = {
       id: Date.now(),
-      x: x,
-      y: y,
-      rotation: (Math.random() - 0.5) * 30, // Random rotation between -15 and 15 degrees
-      style: Math.floor(Math.random() * 3), // Random style (0, 1, or 2)
+      x: clickPosition.x,
+      y: clickPosition.y,
+      text: inputText.trim(),
+      rotation: (Math.random() - 0.5) * 10, // Small rotation between -5 and 5 degrees (readable)
     };
-    
+
     setMarks(prev => [...prev, newMark]);
+    setInputText('');
+    setShowInput(false);
+    setClickPosition(null);
+  };
+
+  // Handle cancel
+  const handleCancel = () => {
+    setInputText('');
+    setShowInput(false);
+    setClickPosition(null);
   };
 
 
@@ -168,7 +194,7 @@ function Home() {
           {marks.map((mark) => (
             <div
               key={mark.id}
-              className={`intro-mark mark-style-${mark.style}`}
+              className={`intro-mark ${mark.text ? 'intro-mark-text' : `mark-style-${mark.style}`}`}
               style={{
                 position: 'absolute',
                 left: `${mark.x}px`,
@@ -176,22 +202,69 @@ function Home() {
                 transform: `translate(-50%, -50%) rotate(${mark.rotation}deg)`,
               }}
             >
-              <svg width="60" height="60" viewBox="0 0 60 60">
-                {mark.style === 0 && (
-                  <circle cx="30" cy="30" r="25" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.7"/>
-                )}
-                {mark.style === 1 && (
-                  <path d="M30 5 L35 20 L50 20 L38 30 L43 45 L30 35 L17 45 L22 30 L10 20 L25 20 Z" fill="currentColor" opacity="0.6"/>
-                )}
-                {mark.style === 2 && (
-                  <rect x="10" y="10" width="40" height="40" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.7" rx="5"/>
-                )}
-              </svg>
+              {mark.text ? (
+                <span className="intro-mark-text-content">{mark.text}</span>
+              ) : (
+                <svg width="60" height="60" viewBox="0 0 60 60">
+                  {mark.style === 0 && (
+                    <circle cx="30" cy="30" r="25" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.7"/>
+                  )}
+                  {mark.style === 1 && (
+                    <path d="M30 5 L35 20 L50 20 L38 30 L43 45 L30 35 L17 45 L22 30 L10 20 L25 20 Z" fill="currentColor" opacity="0.6"/>
+                  )}
+                  {mark.style === 2 && (
+                    <rect x="10" y="10" width="40" height="40" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.7" rx="5"/>
+                  )}
+                </svg>
+              )}
             </div>
           ))}
           
+          {/* Text input box - appears at click position */}
+          {showInput && clickPosition && (
+            <div 
+              className="text-input-container"
+              style={{
+                position: 'absolute',
+                left: `${clickPosition.x}px`,
+                top: `${clickPosition.y}px`,
+                transform: 'translate(-50%, -50%)',
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <form onSubmit={handleTextSubmit} className="text-input-form">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
+                  placeholder="Type a word..."
+                  className="text-input"
+                  maxLength={20}
+                  autoFocus
+                  onBlur={() => {
+                    // Close input if clicking outside (with small delay to allow form submit)
+                    setTimeout(() => {
+                      if (!inputText.trim()) {
+                        handleCancel();
+                      }
+                    }, 200);
+                  }}
+                />
+                <button type="submit" className="text-submit-btn">Add</button>
+                <button 
+                  type="button" 
+                  className="text-cancel-btn"
+                  onClick={handleCancel}
+                >
+                  ×
+                </button>
+              </form>
+            </div>
+          )}
+          
           <p className="intro-hint" style={{ marginTop: '2rem', fontSize: '0.85rem', opacity: 0.6, fontStyle: 'italic' }}>
-            Click anywhere to leave your mark
+            Click anywhere to add a text mark
           </p>
         </section>
 
