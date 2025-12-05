@@ -19,6 +19,7 @@ import polimi from '../assets/about/polimi.png';
 function Home() {
   const [activeSection, setActiveSection] = useState('intro');
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -72,6 +73,19 @@ function Home() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Handle ESC key to close modal
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && selectedImage) {
+        setSelectedImage(null);
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [selectedImage]);
+
+  const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
+
 
   return (
     <div>
@@ -96,11 +110,25 @@ function Home() {
 
           <div className="carousel-wrapper">
             <div className="carousel-track">
-              {[img1, img2, img3, img4, img5, img6,img7,img8,img9].map((img, i) => (
-                <img src={img} alt={`slide-${i}`} className="carousel-img" key={i} />
+              {images.map((img, i) => (
+                <img 
+                  src={img} 
+                  alt={`slide-${i}`} 
+                  className="carousel-img" 
+                  key={i}
+                  onClick={() => setSelectedImage(img)}
+                  style={{ cursor: 'pointer' }}
+                />
               ))}
-              {[img1, img2, img3, img4, img5, img6,img7,img8,img9].map((img, i) => (
-                <img src={img} alt={`slide-${i}-duplicate`} className="carousel-img" key={`duplicate-${i}`} />
+              {images.map((img, i) => (
+                <img 
+                  src={img} 
+                  alt={`slide-${i}-duplicate`} 
+                  className="carousel-img" 
+                  key={`duplicate-${i}`}
+                  onClick={() => setSelectedImage(img)}
+                  style={{ cursor: 'pointer' }}
+                />
               ))}
             </div>
           </div>
@@ -361,6 +389,30 @@ function Home() {
             ))}
         </div>
 
+      {/* Image Modal */}
+      {selectedImage && (
+        <div 
+          className="image-modal" 
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="modal-close-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedImage(null);
+            }}
+            aria-label="Close image"
+          >
+            ×
+          </button>
+          <img 
+            src={selectedImage} 
+            alt="Full size" 
+            className="modal-image"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
     </div>
   );
