@@ -121,8 +121,9 @@ function Home() {
 
   // Handle clicking on intro section to place a mark
   const handleIntroClick = (e) => {
-    if (e.target.closest('.intro-mark') || e.target.closest('.intro-clickable')) {
-      return; // Don't create mark if clicking on existing mark or clickable area
+    // Don't create mark if clicking directly on an existing mark
+    if (e.target.closest('.intro-mark')) {
+      return;
     }
     
     const introSection = introSectionRef.current;
