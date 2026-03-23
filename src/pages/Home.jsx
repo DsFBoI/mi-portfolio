@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import '../index.css';
 
-
 import img1 from '../assets/about/img1.jpg';
 import img2 from '../assets/about/img2.jpg';
 import img3 from '../assets/about/img3.jpg';
@@ -13,7 +12,6 @@ import img8 from '../assets/about/img8.jpg';
 import img9 from '../assets/about/img9.jpg';
 import upm from '../assets/about/upm.png';
 import polimi from '../assets/about/polimi.png';
-    
 
 
 function Home() {
@@ -30,32 +28,27 @@ function Home() {
 
   useEffect(() => {
     const onScroll = () => {
-      // Detect active section based on middle of viewport
       const sections = ['intro', 'about', 'education', 'experience', 'projects', 'skills', 'contact'];
       const viewportMiddle = window.innerHeight / 2;
-      
+
       let currentSection = 'intro';
       let currentSectionIndex = 0;
-      
+
       sections.forEach((sectionId, index) => {
         const element = document.getElementById(sectionId);
         if (element) {
           const rect = element.getBoundingClientRect();
-          // Check if section is in the middle of viewport
           if (rect.top <= viewportMiddle && rect.bottom >= viewportMiddle) {
             currentSection = sectionId;
             currentSectionIndex = index;
           }
         }
       });
-      
+
       setActiveSection(currentSection);
 
-      // Calculate progress based on current section position
       const totalSections = sections.length;
       const progressPerSection = 100 / totalSections;
-      
-      // Find more precise progress within current section
       const currentElement = document.getElementById(currentSection);
       if (currentElement) {
         const rect = currentElement.getBoundingClientRect();
@@ -64,7 +57,6 @@ function Home() {
         setScrollProgress(Math.min(100, progress));
       }
 
-      // Animación fade-in
       const reveals = document.querySelectorAll('.reveal');
       for (let el of reveals) {
         const top = el.getBoundingClientRect().top;
@@ -76,41 +68,34 @@ function Home() {
     };
 
     window.addEventListener('scroll', onScroll);
-    onScroll(); // Call once to set initial state
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Handle ESC key to close modal and prevent body scroll when modal is open
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape' && selectedImage) {
         setSelectedImage(null);
       }
     };
-    
-    // Prevent body scroll when modal is open (important for mobile)
+
     if (selectedImage) {
-      // Save current scroll position
       scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
-      // Apply fixed position and offset to maintain visual position
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollPositionRef.current}px`;
       document.body.style.width = '100%';
     } else {
-      // Restore scroll position
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
-      // Restore the scroll position
       window.scrollTo(0, scrollPositionRef.current);
     }
-    
+
     window.addEventListener('keydown', handleEscape);
     return () => {
       window.removeEventListener('keydown', handleEscape);
-      // Cleanup: restore body scroll when component unmounts
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.top = '';
@@ -123,39 +108,31 @@ function Home() {
 
   const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
 
-  // Handle clicking on intro section to place a mark
   const handleIntroClick = (e) => {
-    // Don't create mark if clicking directly on an existing mark or input box
-    if (e.target.closest('.intro-mark') || 
-        e.target.closest('.text-input-container')) {
-      return;
-    }
-    
+    if (e.target.closest('.intro-mark') || e.target.closest('.text-input-container')) return;
+
     const introSection = introSectionRef.current;
     if (!introSection) return;
-    
+
     const rect = introSection.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
-    // Store click position and show input
+
     setClickPosition({ x, y });
     setShowInput(true);
     setTimeout(() => inputRef.current?.focus(), 0);
   };
 
-  // Handle text input submission - creates a mark with the text
   const handleTextSubmit = (e) => {
     e.preventDefault();
     if (!inputText.trim() || !clickPosition) return;
 
-    // Create a new mark with the user's text
     const newMark = {
       id: Date.now(),
       x: clickPosition.x,
       y: clickPosition.y,
       text: inputText.trim(),
-      rotation: (Math.random() - 0.5) * 10, // Small rotation between -5 and 5 degrees (readable)
+      rotation: (Math.random() - 0.5) * 10,
     };
 
     setMarks(prev => [...prev, newMark]);
@@ -164,33 +141,43 @@ function Home() {
     setClickPosition(null);
   };
 
-  // Handle cancel
   const handleCancel = () => {
     setInputText('');
     setShowInput(false);
     setClickPosition(null);
   };
 
-
   return (
     <div>
-      
+      {/* NAVBAR */}
+      <nav className="navbar">
+        <a href="#intro" className="nav-logo">DSF</a>
+        <ul className="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
       <div className="main-container">
-        {/* Presentación */}
-        <section 
-          id="intro" 
+
+        {/* HERO */}
+        <section
+          id="intro"
           className="section reveal intro-clickable"
           ref={introSectionRef}
           onClick={handleIntroClick}
           style={{ position: 'relative', cursor: 'crosshair' }}
         >
-          <h2 className="reveal">Daniel Sánchez Ferrari</h2>
-          <p className="typewriter">Computer Science Engineer | AI Creative Developer</p>
+          <span className="section-label">Portfolio</span>
+          <h1 className="hero-name reveal">Daniel<br />Sánchez<br />Ferrari</h1>
+          <p className="typewriter">Computer Science Engineer · AI Creative Developer</p>
           <p className="typewriter-mobile typewriter-line1">Computer Science Engineer</p>
           <p className="typewriter-mobile typewriter-line2">AI Creative Developer</p>
-          
-          {/* Render marks */}
+
           {marks.map((mark) => (
             <div
               key={mark.id}
@@ -219,10 +206,9 @@ function Home() {
               )}
             </div>
           ))}
-          
-          {/* Text input box - appears at click position */}
+
           {showInput && clickPosition && (
-            <div 
+            <div
               className="text-input-container"
               style={{
                 position: 'absolute',
@@ -243,55 +229,47 @@ function Home() {
                   maxLength={20}
                   autoFocus
                   onBlur={() => {
-                    // Close input if clicking outside (with small delay to allow form submit)
                     setTimeout(() => {
-                      if (!inputText.trim()) {
-                        handleCancel();
-                      }
+                      if (!inputText.trim()) handleCancel();
                     }, 200);
                   }}
                 />
                 <button type="submit" className="text-submit-btn">Add</button>
-                <button 
-                  type="button" 
-                  className="text-cancel-btn"
-                  onClick={handleCancel}
-                >
-                  ×
-                </button>
+                <button type="button" className="text-cancel-btn" onClick={handleCancel}>×</button>
               </form>
             </div>
           )}
-          
-          <p className="intro-hint" style={{ marginTop: '2rem', fontSize: '0.85rem', opacity: 0.6, fontStyle: 'italic' }}>
-            Click anywhere to add a text mark
-          </p>
+
+          <p className="intro-hint">Click anywhere to leave a mark</p>
         </section>
 
-        {/*About me*/}
+        {/* ABOUT */}
         <section id="about" className="section reveal about-section">
+          <span className="section-label">01 — About</span>
           <h2>About me</h2>
           <p>
-           I'm an young Spanish engineer with a Computer Science Bachelor Degree at Universidad Politécnica de Madrid. I’m passionate about programming specially in everything related to AI and Machine Learning. Some of my other passions are travelling, football and music to name a few.
+            I'm a young Spanish engineer with a Computer Science degree from Universidad Politécnica de Madrid.
+            Passionate about programming — especially everything related to AI and Machine Learning.
+            When not coding, you'll find me travelling, playing football, or listening to music.
           </p>
 
           <div className="carousel-wrapper">
             <div className="carousel-track">
               {images.map((img, i) => (
-                <img 
-                  src={img} 
-                  alt={`slide-${i}`} 
-                  className="carousel-img" 
+                <img
+                  src={img}
+                  alt={`slide-${i}`}
+                  className="carousel-img"
                   key={i}
                   onClick={() => setSelectedImage(img)}
                   style={{ cursor: 'pointer' }}
                 />
               ))}
               {images.map((img, i) => (
-                <img 
-                  src={img} 
-                  alt={`slide-${i}-duplicate`} 
-                  className="carousel-img" 
+                <img
+                  src={img}
+                  alt={`slide-${i}-duplicate`}
+                  className="carousel-img"
                   key={`duplicate-${i}`}
                   onClick={() => setSelectedImage(img)}
                   style={{ cursor: 'pointer' }}
@@ -300,54 +278,60 @@ function Home() {
             </div>
           </div>
         </section>
-        {/* Education */}
+
+        {/* EDUCATION */}
         <section id="education" className="section reveal">
+          <span className="section-label">02 — Education</span>
           <h2>Education</h2>
           <ul className="education-list">
             <li className="education-item">
               <div className="edu-column">
-                <img 
-                  src={upm} 
-                  alt="UPM Logo"
-                  className="edu-logo"
-                />
+                <img src={upm} alt="UPM Logo" className="edu-logo" />
                 <span>
-                  <strong>Politécnica de Madrid University</strong> — Degree in Computer Science (2020–2025)
+                  <strong>Politécnica de Madrid University</strong><br />
+                  Degree in Computer Science — 2020–2025
                 </span>
               </div>
             </li>
-              
             <li className="education-item">
               <div className="edu-column">
-                <img 
-                  src={polimi} 
-                  alt="Polimi Logo"
-                  className="edu-logo"
-                />
+                <img src={polimi} alt="Polimi Logo" className="edu-logo" />
                 <span>
-                  <strong>Politecnico di Milano University</strong> — Erasmus+ (2023–2024), Total average: 21.3/30
+                  <strong>Politecnico di Milano University</strong><br />
+                  Erasmus+ — 2023–2024 · Average: 21.3/30
                 </span>
               </div>
             </li>
-              
-                        
           </ul>
         </section>
 
-
-        {/* Working Experience */}
+        {/* EXPERIENCE */}
         <section id="experience" className="section reveal">
-          <h2>Working Experience</h2>
-          <ul>
-            <li><strong>Accenture (Sept 2024 – May 2025)</strong> — Supply Chain Analyst Intern</li>
-            <li><strong>Accenture (Oct 2025 – Currently)</strong> — Ind & Func AI Decision Science Analyst </li>
+          <span className="section-label">03 — Experience</span>
+          <h2>Experience</h2>
+          <ul className="experience-list">
+            <li className="experience-item">
+              <div>
+                <div className="exp-company">Accenture</div>
+                <div className="exp-role">Supply Chain Analyst Intern</div>
+              </div>
+              <span className="exp-date">Sept 2024 – May 2025</span>
+            </li>
+            <li className="experience-item">
+              <div>
+                <div className="exp-company">Accenture</div>
+                <div className="exp-role">Ind & Func AI Decision Science Analyst</div>
+              </div>
+              <span className="exp-date">Oct 2025 – Present</span>
+            </li>
           </ul>
         </section>
 
-        {/* Projects */}
+        {/* PROJECTS */}
         <section id="projects" className="section reveal">
+          <span className="section-label">04 — Projects</span>
           <h2>Projects</h2>
-          
+
           <div className="projects-container">
             <div className="project-card">
               <div className="project-header">
@@ -359,9 +343,7 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/documents" target="_blank" rel="noopener noreferrer" className="project-link">
-                  GitHub
-                </a>
+                <a href="https://github.com/DsFBoI/documents" target="_blank" rel="noopener noreferrer" className="project-link">GitHub</a>
               </div>
             </div>
 
@@ -374,9 +356,7 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/VisionAI" target="_blank" rel="noopener noreferrer" className="project-link">
-                  GitHub
-                </a>
+                <a href="https://github.com/DsFBoI/VisionAI" target="_blank" rel="noopener noreferrer" className="project-link">GitHub</a>
               </div>
             </div>
 
@@ -390,9 +370,7 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/UPM-Work/tree/main/PDL" target="_blank" rel="noopener noreferrer" className="project-link">
-                  GitHub
-                </a>
+                <a href="https://github.com/DsFBoI/UPM-Work/tree/main/PDL" target="_blank" rel="noopener noreferrer" className="project-link">GitHub</a>
               </div>
             </div>
 
@@ -405,176 +383,103 @@ function Home() {
                 </div>
               </div>
               <div className="project-links">
-                <a href="https://github.com/DsFBoI/UPM-Work/tree/main/IA/Practica_2k22" target="_blank" rel="noopener noreferrer" className="project-link">
-                  GitHub
-                </a>
+                <a href="https://github.com/DsFBoI/UPM-Work/tree/main/IA/Practica_2k22" target="_blank" rel="noopener noreferrer" className="project-link">GitHub</a>
               </div>
             </div>
 
             <div className="projects-footer">
               <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" rel="noopener noreferrer" className="view-all-btn">
-                View All Projects on GitHub
+                View All on GitHub
               </a>
             </div>
           </div>
         </section>
 
-        {/* Skills */}
+        {/* SKILLS */}
         <section id="skills" className="section reveal">
+          <span className="section-label">05 — Skills</span>
           <h2>Skills</h2>
-          
+
           <div className="skills-container">
             <div className="skills-category">
               <h3>Programming Languages</h3>
               <div className="skills-grid">
-                <div className="skill-item">
-                  <span className="skill-name">Python</span>
-                  <div className="skill-bar">
-                    <div className="skill-progress" data-level="90"></div>
-                  </div>
-                  <span className="skill-level">Advanced</span>
-                </div>
-                <div className="skill-item">
-                  <span className="skill-name">Java</span>
-                  <div className="skill-bar">
-                    <div className="skill-progress" data-level="90"></div>
-                  </div>
-                  <span className="skill-level">Advanced</span>
-                </div>
-                <div className="skill-item">
-                  <span className="skill-name">C++</span>
-                  <div className="skill-bar">
-                    <div className="skill-progress" data-level="75"></div>
-                  </div>
-                  <span className="skill-level">Intermediate</span>
-                </div>
-                <div className="skill-item">
-                  <span className="skill-name">C#</span>
-                  <div className="skill-bar">
-                    <div className="skill-progress" data-level="70"></div>
-                  </div>
-                  <span className="skill-level">Intermediate</span>
-                </div>
-                <div className="skill-item">
-                  <span className="skill-name">Assembly</span>
-                  <div className="skill-bar">
-                    <div className="skill-progress" data-level="65"></div>
-                  </div>
-                  <span className="skill-level">Intermediate</span>
-                </div>
-                <div className="skill-item">
-                  <span className="skill-name">SQL</span>
-                  <div className="skill-bar">
-                    <div className="skill-progress" data-level="80"></div>
-                  </div>
-                  <span className="skill-level">Intermediate</span>
-                </div>
+                <div className="skill-item"><span className="skill-name">Python</span><div className="skill-bar"><div className="skill-progress" data-level="90"></div></div><span className="skill-level">Advanced</span></div>
+                <div className="skill-item"><span className="skill-name">Java</span><div className="skill-bar"><div className="skill-progress" data-level="90"></div></div><span className="skill-level">Advanced</span></div>
+                <div className="skill-item"><span className="skill-name">C++</span><div className="skill-bar"><div className="skill-progress" data-level="75"></div></div><span className="skill-level">Intermediate</span></div>
+                <div className="skill-item"><span className="skill-name">C#</span><div className="skill-bar"><div className="skill-progress" data-level="70"></div></div><span className="skill-level">Intermediate</span></div>
+                <div className="skill-item"><span className="skill-name">Assembly</span><div className="skill-bar"><div className="skill-progress" data-level="65"></div></div><span className="skill-level">Intermediate</span></div>
+                <div className="skill-item"><span className="skill-name">SQL</span><div className="skill-bar"><div className="skill-progress" data-level="80"></div></div><span className="skill-level">Intermediate</span></div>
               </div>
             </div>
 
             <div className="skills-category">
               <h3>Technologies & Tools</h3>
               <div className="skills-grid">
-                <div className="skill-item">
-                  <span className="skill-name">Git</span>
-                  <div className="skill-bar">
-                    <div className="skill-progress" data-level="85"></div>
-                  </div>
-                  <span className="skill-level">Advanced</span>
-                </div>
-                <div className="skill-item">
-                  <span className="skill-name">AI/ML</span>
-                  <div className="skill-bar">
-                    <div className="skill-progress" data-level="80"></div>
-                  </div>
-                  <span className="skill-level">Advanced</span>
-                </div>
-                <div className="skill-item">
-                  <span className="skill-name">Office IT</span>
-                  <div className="skill-bar">
-                    <div className="skill-progress" data-level="85"></div>
-                  </div>
-                  <span className="skill-level">Advanced</span>
-                </div>
+                <div className="skill-item"><span className="skill-name">Git</span><div className="skill-bar"><div className="skill-progress" data-level="85"></div></div><span className="skill-level">Advanced</span></div>
+                <div className="skill-item"><span className="skill-name">AI / ML</span><div className="skill-bar"><div className="skill-progress" data-level="80"></div></div><span className="skill-level">Advanced</span></div>
+                <div className="skill-item"><span className="skill-name">Office IT</span><div className="skill-bar"><div className="skill-progress" data-level="85"></div></div><span className="skill-level">Advanced</span></div>
               </div>
             </div>
 
             <div className="skills-category">
               <h3>Soft Skills</h3>
               <div className="soft-skills-grid">
-                <div className="soft-skill-item">
-                  <div className="soft-skill-icon">🎯</div>
-                  <span>Problem Solving</span>
-                </div>
-                <div className="soft-skill-item">
-                  <div className="soft-skill-icon">👥</div>
-                  <span>Teamwork</span>
-                </div>
-                <div className="soft-skill-item">
-                  <div className="soft-skill-icon">🚀</div>
-                  <span>Leadership</span>
-                </div>
-                <div className="soft-skill-item">
-                  <div className="soft-skill-icon">💡</div>
-                  <span>Initiative</span>
-                </div>
-                <div className="soft-skill-item">
-                  <div className="soft-skill-icon">🔄</div>
-                  <span>Adaptability</span>
-                </div>
-                <div className="soft-skill-item">
-                  <div className="soft-skill-icon">🎨</div>
-                  <span>Creativity</span>
-                </div>
+                <div className="soft-skill-item"><div className="soft-skill-icon">🎯</div><span>Problem Solving</span></div>
+                <div className="soft-skill-item"><div className="soft-skill-icon">👥</div><span>Teamwork</span></div>
+                <div className="soft-skill-item"><div className="soft-skill-icon">🚀</div><span>Leadership</span></div>
+                <div className="soft-skill-item"><div className="soft-skill-icon">💡</div><span>Initiative</span></div>
+                <div className="soft-skill-item"><div className="soft-skill-icon">🔄</div><span>Adaptability</span></div>
+                <div className="soft-skill-item"><div className="soft-skill-icon">🎨</div><span>Creativity</span></div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Contact */}
+        {/* CONTACT */}
         <section id="contact" className="section reveal">
+          <span className="section-label">06 — Contact</span>
           <h2>Contact</h2>
           <p>
-            📧 <a href="mailto:danelsf02@gmail.com">danelsf02@gmail.com</a><br />
-            📞 +34 663 54 34 76<br />
-            🌐 <a href="https://github.com/DsFBoI" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/danielsferrari" target="_blank">LinkedIn</a><br />
-            📍 Madrid
+            <a href="mailto:danelsf02@gmail.com">danelsf02@gmail.com</a><br />
+            +34 663 54 34 76<br />
+            <a href="https://github.com/DsFBoI" target="_blank" rel="noopener noreferrer">GitHub</a>
+            {' · '}
+            <a href="https://linkedin.com/in/danielsferrari" target="_blank" rel="noopener noreferrer">LinkedIn</a><br />
+            Madrid, Spain
           </p>
         </section>
-    </div>
-    <div className="scroll-spy-vertical">
+
+      </div>
+
+      {/* SCROLL SPY */}
+      <div className="scroll-spy-vertical">
         <div className="progress-line" style={{ height: `${scrollProgress}%` }} />
         {['intro', 'about', 'education', 'experience', 'projects', 'skills', 'contact'].map((id) => (
-            <div
-                key={id}
-                className={`spy-item ${activeSection === id ? 'active' : ''}`}
-                onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                <div className="spy-dot" />
-                <span className="spy-label">{id.charAt(0).toUpperCase() + id.slice(1)}</span>
-            </div>
-            ))}
-        </div>
+          <div
+            key={id}
+            className={`spy-item ${activeSection === id ? 'active' : ''}`}
+            onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            <div className="spy-dot" />
+            <span className="spy-label">{id.charAt(0).toUpperCase() + id.slice(1)}</span>
+          </div>
+        ))}
+      </div>
 
-      {/* Image Modal */}
+      {/* IMAGE MODAL */}
       {selectedImage && (
-        <div 
-          className="image-modal" 
-          onClick={() => setSelectedImage(null)}
-        >
-          <button 
+        <div className="image-modal" onClick={() => setSelectedImage(null)}>
+          <button
             className="modal-close-btn"
-            onClick={(e) => {
-              e.stopPropagation();
-              setSelectedImage(null);
-            }}
+            onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
             aria-label="Close image"
           >
-            ×
+            Close
           </button>
-          <img 
-            src={selectedImage} 
-            alt="Full size" 
+          <img
+            src={selectedImage}
+            alt="Full size"
             className="modal-image"
             onClick={(e) => e.stopPropagation()}
           />
