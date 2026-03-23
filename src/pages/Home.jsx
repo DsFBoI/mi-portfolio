@@ -212,14 +212,17 @@ function Home() {
             </div>
           )}
 
-          <p className="intro-hint">Click anywhere to leave a mark</p>
+          <div className="scroll-indicator">
+            <span>Scroll</span>
+            <div className="scroll-line"></div>
+          </div>
         </section>
 
         {/* ── ABOUT ────────────────────────────────────────── */}
         <section id="about" className="section reveal">
           <span className="section-label">01 — About</span>
           <h2>About me</h2>
-          <p>
+          <p className="lead-text">
             I'm a young Spanish engineer with a Computer Science degree from Universidad Politécnica de Madrid.
             Passionate about programming — especially everything related to Data and AI.
             When not coding, you'll find me playing football or diving into videogames.
@@ -331,6 +334,7 @@ function Home() {
 
             <div className="project-card">
               <div className="project-header">
+                <span className="project-number">01</span>
                 <h3>Final Degree Project: Steganography Algorithm</h3>
                 <div className="project-tech">
                   <span className="tech-tag">Python</span>
@@ -345,6 +349,7 @@ function Home() {
 
             <div className="project-card">
               <div className="project-header">
+                <span className="project-number">02</span>
                 <h3>Zabbit</h3>
                 <div className="project-tech">
                   <span className="tech-tag">Startup</span>
@@ -357,6 +362,7 @@ function Home() {
 
             <div className="project-card">
               <div className="project-header">
+                <span className="project-number">03</span>
                 <h3>Vision AI Tool</h3>
                 <div className="project-tech">
                   <span className="tech-tag">Python</span>
@@ -370,6 +376,7 @@ function Home() {
 
             <div className="project-card">
               <div className="project-header">
+                <span className="project-number">04</span>
                 <h3>JavaScript Compiler</h3>
                 <div className="project-tech">
                   <span className="tech-tag">Java</span>
@@ -384,6 +391,7 @@ function Home() {
 
             <div className="project-card">
               <div className="project-header">
+                <span className="project-number">05</span>
                 <h3>Sokoban Game</h3>
                 <div className="project-tech">
                   <span className="tech-tag">Java</span>
@@ -397,6 +405,7 @@ function Home() {
 
             <div className="project-card">
               <div className="project-header">
+                <span className="project-number">06</span>
                 <h3>Athens Interactive Metro Map</h3>
                 <div className="project-tech">
                   <span className="tech-tag">Python</span>
@@ -491,14 +500,16 @@ function Home() {
         <section id="contact" className="section reveal">
           <span className="section-label">07 — Contact</span>
           <h2>Contact</h2>
-          <p>
-            <a href="mailto:danelsf02@gmail.com">danelsf02@gmail.com</a><br />
-            +34 663 54 34 76<br />
+          <div className="contact-email-display">
+            <a href="mailto:danelsf02@gmail.com">danelsf02@gmail.com</a>
+          </div>
+          <div className="contact-details">
+            <span>+34 663 54 34 76</span><br />
             <a href="https://github.com/DsFBoI" target="_blank" rel="noopener noreferrer">GitHub</a>
             {' · '}
             <a href="https://linkedin.com/in/danielsferrari" target="_blank" rel="noopener noreferrer">LinkedIn</a><br />
-            Madrid, Spain
-          </p>
+            <span>Madrid, Spain</span>
+          </div>
         </section>
 
       </div>
