@@ -482,7 +482,7 @@ a:hover {
 .edu-column {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   gap: 2rem;
   text-align: left;
 }
@@ -493,12 +493,56 @@ a:hover {
   flex-shrink: 0;
   filter: grayscale(100%);
   opacity: 0.6;
+  margin-top: 2px;
 }
 
-.edu-column span {
+.edu-no-logo {
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gray-200);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gray-400);
+  margin-top: 2px;
+}
+
+.edu-title {
+  display: block;
   font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 0.2rem;
+}
+
+.edu-meta {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.6rem;
+}
+
+.edu-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.edu-details li {
+  font-size: 0.88rem;
   color: var(--gray-600);
   line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.edu-details li::before {
+  content: '— ';
+  color: var(--gray-400);
 }
 
 /* ─── EXPERIENCE ─────────────────────────────────────────── */
@@ -533,6 +577,10 @@ a:hover {
   color: var(--gray-600);
 }
 
+.exp-info {
+  flex: 1;
+}
+
 .exp-date {
   font-size: 0.75rem;
   color: var(--gray-400);
@@ -540,6 +588,24 @@ a:hover {
   white-space: nowrap;
   flex-shrink: 0;
   padding-top: 0.2rem;
+}
+
+.exp-description {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+
+.exp-description li {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 0.1rem;
+}
+
+.exp-description li::before {
+  content: '— ';
+  color: var(--gray-400);
 }
 
 /* ─── PROJECTS ───────────────────────────────────────────── */
@@ -771,6 +837,60 @@ a:hover {
   line-height: 2.2;
   color: var(--gray-600);
   max-width: none;
+}
+
+/* ─── LANGUAGES ──────────────────────────────────────────── */
+.languages-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 560px;
+}
+
+.language-item {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--gray-200);
+}
+
+.language-item:last-child {
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.lang-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--black);
+  width: 90px;
+  flex-shrink: 0;
+}
+
+.lang-bar-container {
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+  position: relative;
+}
+
+.lang-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--black);
+  transition: width 1s ease;
+}
+
+.lang-level {
+  font-size: 0.72rem;
+  color: var(--gray-400);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  width: 80px;
+  text-align: right;
+  flex-shrink: 0;
 }
 
 /* ─── SCROLL SPY ─────────────────────────────────────────── */

@@ -14,6 +14,8 @@ import upm from '../assets/about/upm.png';
 import polimi from '../assets/about/polimi.png';
 
 
+const SECTIONS = ['intro', 'about', 'education', 'experience', 'projects', 'skills', 'languages', 'contact'];
+
 function Home() {
   const [activeSection, setActiveSection] = useState('intro');
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -28,13 +30,12 @@ function Home() {
 
   useEffect(() => {
     const onScroll = () => {
-      const sections = ['intro', 'about', 'education', 'experience', 'projects', 'skills', 'contact'];
       const viewportMiddle = window.innerHeight / 2;
 
       let currentSection = 'intro';
       let currentSectionIndex = 0;
 
-      sections.forEach((sectionId, index) => {
+      SECTIONS.forEach((sectionId, index) => {
         const element = document.getElementById(sectionId);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -47,8 +48,7 @@ function Home() {
 
       setActiveSection(currentSection);
 
-      const totalSections = sections.length;
-      const progressPerSection = 100 / totalSections;
+      const progressPerSection = 100 / SECTIONS.length;
       const currentElement = document.getElementById(currentSection);
       if (currentElement) {
         const rect = currentElement.getBoundingClientRect();
@@ -59,9 +59,7 @@ function Home() {
 
       const reveals = document.querySelectorAll('.reveal');
       for (let el of reveals) {
-        const top = el.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (top < windowHeight - 100) {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
           el.classList.add('active');
         }
       }
@@ -74,9 +72,7 @@ function Home() {
 
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && selectedImage) {
-        setSelectedImage(null);
-      }
+      if (e.key === 'Escape' && selectedImage) setSelectedImage(null);
     };
 
     if (selectedImage) {
@@ -100,9 +96,7 @@ function Home() {
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
-      if (scrollPositionRef.current) {
-        window.scrollTo(0, scrollPositionRef.current);
-      }
+      if (scrollPositionRef.current) window.scrollTo(0, scrollPositionRef.current);
     };
   }, [selectedImage]);
 
@@ -110,15 +104,10 @@ function Home() {
 
   const handleIntroClick = (e) => {
     if (e.target.closest('.intro-mark') || e.target.closest('.text-input-container')) return;
-
     const introSection = introSectionRef.current;
     if (!introSection) return;
-
     const rect = introSection.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    setClickPosition({ x, y });
+    setClickPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
     setShowInput(true);
     setTimeout(() => inputRef.current?.focus(), 0);
   };
@@ -126,16 +115,13 @@ function Home() {
   const handleTextSubmit = (e) => {
     e.preventDefault();
     if (!inputText.trim() || !clickPosition) return;
-
-    const newMark = {
+    setMarks(prev => [...prev, {
       id: Date.now(),
       x: clickPosition.x,
       y: clickPosition.y,
       text: inputText.trim(),
       rotation: (Math.random() - 0.5) * 10,
-    };
-
-    setMarks(prev => [...prev, newMark]);
+    }]);
     setInputText('');
     setShowInput(false);
     setClickPosition(null);
@@ -158,13 +144,14 @@ function Home() {
           <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#skills">Skills</a></li>
+          <li><a href="#languages">Languages</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
 
       <div className="main-container">
 
-        {/* HERO */}
+        {/* ── HERO ─────────────────────────────────────────── */}
         <section
           id="intro"
           className="section reveal intro-clickable"
@@ -174,9 +161,9 @@ function Home() {
         >
           <span className="section-label">Portfolio</span>
           <h1 className="hero-name reveal">Daniel<br />Sánchez<br />Ferrari</h1>
-          <p className="typewriter">Computer Science Engineer · AI Creative Developer</p>
+          <p className="typewriter">Computer Science Engineer · AI & Data Developer</p>
           <p className="typewriter-mobile typewriter-line1">Computer Science Engineer</p>
-          <p className="typewriter-mobile typewriter-line2">AI Creative Developer</p>
+          <p className="typewriter-mobile typewriter-line2">AI & Data Developer</p>
 
           {marks.map((mark) => (
             <div
@@ -193,15 +180,9 @@ function Home() {
                 <span className="intro-mark-text-content">{mark.text}</span>
               ) : (
                 <svg width="60" height="60" viewBox="0 0 60 60">
-                  {mark.style === 0 && (
-                    <circle cx="30" cy="30" r="25" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.7"/>
-                  )}
-                  {mark.style === 1 && (
-                    <path d="M30 5 L35 20 L50 20 L38 30 L43 45 L30 35 L17 45 L22 30 L10 20 L25 20 Z" fill="currentColor" opacity="0.6"/>
-                  )}
-                  {mark.style === 2 && (
-                    <rect x="10" y="10" width="40" height="40" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.7" rx="5"/>
-                  )}
+                  {mark.style === 0 && <circle cx="30" cy="30" r="25" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.7"/>}
+                  {mark.style === 1 && <path d="M30 5 L35 20 L50 20 L38 30 L43 45 L30 35 L17 45 L22 30 L10 20 L25 20 Z" fill="currentColor" opacity="0.6"/>}
+                  {mark.style === 2 && <rect x="10" y="10" width="40" height="40" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.7" rx="5"/>}
                 </svg>
               )}
             </div>
@@ -210,12 +191,7 @@ function Home() {
           {showInput && clickPosition && (
             <div
               className="text-input-container"
-              style={{
-                position: 'absolute',
-                left: `${clickPosition.x}px`,
-                top: `${clickPosition.y}px`,
-                transform: 'translate(-50%, -50%)',
-              }}
+              style={{ position: 'absolute', left: `${clickPosition.x}px`, top: `${clickPosition.y}px`, transform: 'translate(-50%, -50%)' }}
               onClick={(e) => e.stopPropagation()}
             >
               <form onSubmit={handleTextSubmit} className="text-input-form">
@@ -228,11 +204,7 @@ function Home() {
                   className="text-input"
                   maxLength={20}
                   autoFocus
-                  onBlur={() => {
-                    setTimeout(() => {
-                      if (!inputText.trim()) handleCancel();
-                    }, 200);
-                  }}
+                  onBlur={() => { setTimeout(() => { if (!inputText.trim()) handleCancel(); }, 200); }}
                 />
                 <button type="submit" className="text-submit-btn">Add</button>
                 <button type="button" className="text-cancel-btn" onClick={handleCancel}>×</button>
@@ -243,96 +215,120 @@ function Home() {
           <p className="intro-hint">Click anywhere to leave a mark</p>
         </section>
 
-        {/* ABOUT */}
-        <section id="about" className="section reveal about-section">
+        {/* ── ABOUT ────────────────────────────────────────── */}
+        <section id="about" className="section reveal">
           <span className="section-label">01 — About</span>
           <h2>About me</h2>
           <p>
             I'm a young Spanish engineer with a Computer Science degree from Universidad Politécnica de Madrid.
-            Passionate about programming — especially everything related to AI and Machine Learning.
-            When not coding, you'll find me travelling, playing football, or listening to music.
+            Passionate about programming — especially everything related to Data and AI.
+            When not coding, you'll find me playing football or diving into videogames.
           </p>
 
           <div className="carousel-wrapper">
             <div className="carousel-track">
               {images.map((img, i) => (
-                <img
-                  src={img}
-                  alt={`slide-${i}`}
-                  className="carousel-img"
-                  key={i}
-                  onClick={() => setSelectedImage(img)}
-                  style={{ cursor: 'pointer' }}
-                />
+                <img src={img} alt={`slide-${i}`} className="carousel-img" key={i}
+                  onClick={() => setSelectedImage(img)} style={{ cursor: 'pointer' }} />
               ))}
               {images.map((img, i) => (
-                <img
-                  src={img}
-                  alt={`slide-${i}-duplicate`}
-                  className="carousel-img"
-                  key={`duplicate-${i}`}
-                  onClick={() => setSelectedImage(img)}
-                  style={{ cursor: 'pointer' }}
-                />
+                <img src={img} alt={`slide-${i}-dup`} className="carousel-img" key={`dup-${i}`}
+                  onClick={() => setSelectedImage(img)} style={{ cursor: 'pointer' }} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* EDUCATION */}
+        {/* ── EDUCATION ────────────────────────────────────── */}
         <section id="education" className="section reveal">
           <span className="section-label">02 — Education</span>
           <h2>Education</h2>
           <ul className="education-list">
+
+            <li className="education-item">
+              <div className="edu-column">
+                <div className="edu-no-logo">IES</div>
+                <div>
+                  <span className="edu-title">IES Ramiro de Maeztu</span>
+                  <span className="edu-meta">High School — Sept 2018 – June 2020</span>
+                  <ul className="edu-details">
+                    <li>Technology modality · Bilingual Group</li>
+                    <li>EBAU score: 10.75 / 14</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
             <li className="education-item">
               <div className="edu-column">
                 <img src={upm} alt="UPM Logo" className="edu-logo" />
-                <span>
-                  <strong>Politécnica de Madrid University</strong><br />
-                  Degree in Computer Science — 2020–2025
-                </span>
+                <div>
+                  <span className="edu-title">Universidad Politécnica de Madrid</span>
+                  <span className="edu-meta">Bachelor in Computer Science — Sept 2020 – June 2025</span>
+                  <ul className="edu-details">
+                    <li>Average: 7.3 / 10</li>
+                    <li>Class delegate for 2 years</li>
+                  </ul>
+                </div>
               </div>
             </li>
+
             <li className="education-item">
               <div className="edu-column">
                 <img src={polimi} alt="Polimi Logo" className="edu-logo" />
-                <span>
-                  <strong>Politecnico di Milano University</strong><br />
-                  Erasmus+ — 2023–2024 · Average: 21.3/30
-                </span>
+                <div>
+                  <span className="edu-title">Politecnico di Milano</span>
+                  <span className="edu-meta">Erasmus+ — Sept 2023 – Sept 2024</span>
+                  <ul className="edu-details">
+                    <li>Average: 21.3 / 30</li>
+                  </ul>
+                </div>
               </div>
             </li>
+
           </ul>
         </section>
 
-        {/* EXPERIENCE */}
+        {/* ── EXPERIENCE ───────────────────────────────────── */}
         <section id="experience" className="section reveal">
           <span className="section-label">03 — Experience</span>
           <h2>Experience</h2>
           <ul className="experience-list">
+
             <li className="experience-item">
-              <div>
+              <div className="exp-info">
                 <div className="exp-company">Accenture</div>
-                <div className="exp-role">Supply Chain Analyst Intern</div>
+                <div className="exp-role">Technology Analyst Intern</div>
+                <ul className="exp-description">
+                  <li>Intern in the Supply Chain and AI department</li>
+                  <li>Control model of Data Quality in Python</li>
+                </ul>
               </div>
               <span className="exp-date">Sept 2024 – May 2025</span>
             </li>
+
             <li className="experience-item">
-              <div>
+              <div className="exp-info">
                 <div className="exp-company">Accenture</div>
-                <div className="exp-role">Ind & Func AI Decision Science Analyst</div>
+                <div className="exp-role">Data & AI Analyst</div>
+                <ul className="exp-description">
+                  <li>Data Visualization, management and Governance projects</li>
+                  <li>Production line data management and Supply chain analysis</li>
+                </ul>
               </div>
               <span className="exp-date">Oct 2025 – Present</span>
             </li>
+
           </ul>
         </section>
 
-        {/* PROJECTS */}
+        {/* ── PROJECTS ─────────────────────────────────────── */}
         <section id="projects" className="section reveal">
           <span className="section-label">04 — Projects</span>
           <h2>Projects</h2>
 
           <div className="projects-container">
+
             <div className="project-card">
               <div className="project-header">
                 <h3>Final Degree Project: Steganography Algorithm</h3>
@@ -344,6 +340,18 @@ function Home() {
               </div>
               <div className="project-links">
                 <a href="https://github.com/DsFBoI/documents" target="_blank" rel="noopener noreferrer" className="project-link">GitHub</a>
+              </div>
+            </div>
+
+            <div className="project-card">
+              <div className="project-header">
+                <h3>Zabbit</h3>
+                <div className="project-tech">
+                  <span className="tech-tag">Startup</span>
+                  <span className="tech-tag">Generación ESIC</span>
+                </div>
+              </div>
+              <div className="project-links">
               </div>
             </div>
 
@@ -376,10 +384,23 @@ function Home() {
 
             <div className="project-card">
               <div className="project-header">
+                <h3>Sokoban Game</h3>
+                <div className="project-tech">
+                  <span className="tech-tag">Java</span>
+                  <span className="tech-tag">Game Development</span>
+                </div>
+              </div>
+              <div className="project-links">
+                <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" rel="noopener noreferrer" className="project-link">GitHub</a>
+              </div>
+            </div>
+
+            <div className="project-card">
+              <div className="project-header">
                 <h3>Athens Interactive Metro Map</h3>
                 <div className="project-tech">
                   <span className="tech-tag">Python</span>
-                  <span className="tech-tag">Algorithms</span>
+                  <span className="tech-tag">A* Algorithm</span>
                 </div>
               </div>
               <div className="project-links">
@@ -388,14 +409,14 @@ function Home() {
             </div>
 
             <div className="projects-footer">
-              <a href="https://github.com/DsFBoI/UPM-Work" target="_blank" rel="noopener noreferrer" className="view-all-btn">
+              <a href="https://github.com/DsFBoI" target="_blank" rel="noopener noreferrer" className="view-all-btn">
                 View All on GitHub
               </a>
             </div>
           </div>
         </section>
 
-        {/* SKILLS */}
+        {/* ── SKILLS ───────────────────────────────────────── */}
         <section id="skills" className="section reveal">
           <span className="section-label">05 — Skills</span>
           <h2>Skills</h2>
@@ -406,18 +427,19 @@ function Home() {
               <div className="skills-grid">
                 <div className="skill-item"><span className="skill-name">Python</span><div className="skill-bar"><div className="skill-progress" data-level="90"></div></div><span className="skill-level">Advanced</span></div>
                 <div className="skill-item"><span className="skill-name">Java</span><div className="skill-bar"><div className="skill-progress" data-level="90"></div></div><span className="skill-level">Advanced</span></div>
+                <div className="skill-item"><span className="skill-name">SQL</span><div className="skill-bar"><div className="skill-progress" data-level="80"></div></div><span className="skill-level">Intermediate</span></div>
                 <div className="skill-item"><span className="skill-name">C++</span><div className="skill-bar"><div className="skill-progress" data-level="75"></div></div><span className="skill-level">Intermediate</span></div>
                 <div className="skill-item"><span className="skill-name">C#</span><div className="skill-bar"><div className="skill-progress" data-level="70"></div></div><span className="skill-level">Intermediate</span></div>
                 <div className="skill-item"><span className="skill-name">Assembly</span><div className="skill-bar"><div className="skill-progress" data-level="65"></div></div><span className="skill-level">Intermediate</span></div>
-                <div className="skill-item"><span className="skill-name">SQL</span><div className="skill-bar"><div className="skill-progress" data-level="80"></div></div><span className="skill-level">Intermediate</span></div>
               </div>
             </div>
 
             <div className="skills-category">
               <h3>Technologies & Tools</h3>
               <div className="skills-grid">
+                <div className="skill-item"><span className="skill-name">AI / ML</span><div className="skill-bar"><div className="skill-progress" data-level="85"></div></div><span className="skill-level">Advanced</span></div>
                 <div className="skill-item"><span className="skill-name">Git</span><div className="skill-bar"><div className="skill-progress" data-level="85"></div></div><span className="skill-level">Advanced</span></div>
-                <div className="skill-item"><span className="skill-name">AI / ML</span><div className="skill-bar"><div className="skill-progress" data-level="80"></div></div><span className="skill-level">Advanced</span></div>
+                <div className="skill-item"><span className="skill-name">Data Analysis</span><div className="skill-bar"><div className="skill-progress" data-level="85"></div></div><span className="skill-level">Advanced</span></div>
                 <div className="skill-item"><span className="skill-name">Office IT</span><div className="skill-bar"><div className="skill-progress" data-level="85"></div></div><span className="skill-level">Advanced</span></div>
               </div>
             </div>
@@ -426,7 +448,7 @@ function Home() {
               <h3>Soft Skills</h3>
               <div className="soft-skills-grid">
                 <div className="soft-skill-item"><div className="soft-skill-icon">🎯</div><span>Problem Solving</span></div>
-                <div className="soft-skill-item"><div className="soft-skill-icon">👥</div><span>Teamwork</span></div>
+                <div className="soft-skill-item"><div className="soft-skill-icon">👥</div><span>Co-working</span></div>
                 <div className="soft-skill-item"><div className="soft-skill-icon">🚀</div><span>Leadership</span></div>
                 <div className="soft-skill-item"><div className="soft-skill-icon">💡</div><span>Initiative</span></div>
                 <div className="soft-skill-item"><div className="soft-skill-icon">🔄</div><span>Adaptability</span></div>
@@ -436,9 +458,38 @@ function Home() {
           </div>
         </section>
 
-        {/* CONTACT */}
+        {/* ── LANGUAGES ────────────────────────────────────── */}
+        <section id="languages" className="section reveal">
+          <span className="section-label">06 — Languages</span>
+          <h2>Languages</h2>
+          <div className="languages-grid">
+            <div className="language-item">
+              <span className="lang-name">Spanish</span>
+              <div className="lang-bar-container">
+                <div className="lang-bar-fill" style={{ width: '100%' }}></div>
+              </div>
+              <span className="lang-level">Native</span>
+            </div>
+            <div className="language-item">
+              <span className="lang-name">English</span>
+              <div className="lang-bar-container">
+                <div className="lang-bar-fill" style={{ width: '90%' }}></div>
+              </div>
+              <span className="lang-level">Advanced</span>
+            </div>
+            <div className="language-item">
+              <span className="lang-name">Italian</span>
+              <div className="lang-bar-container">
+                <div className="lang-bar-fill" style={{ width: '50%' }}></div>
+              </div>
+              <span className="lang-level">Basic</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ── CONTACT ──────────────────────────────────────── */}
         <section id="contact" className="section reveal">
-          <span className="section-label">06 — Contact</span>
+          <span className="section-label">07 — Contact</span>
           <h2>Contact</h2>
           <p>
             <a href="mailto:danelsf02@gmail.com">danelsf02@gmail.com</a><br />
@@ -455,7 +506,7 @@ function Home() {
       {/* SCROLL SPY */}
       <div className="scroll-spy-vertical">
         <div className="progress-line" style={{ height: `${scrollProgress}%` }} />
-        {['intro', 'about', 'education', 'experience', 'projects', 'skills', 'contact'].map((id) => (
+        {SECTIONS.map((id) => (
           <div
             key={id}
             className={`spy-item ${activeSection === id ? 'active' : ''}`}
